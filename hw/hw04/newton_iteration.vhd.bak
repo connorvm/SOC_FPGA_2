@@ -35,7 +35,8 @@ architecture newton_iteration_arch of newton_iteration is
     temp <= y_current * y_current;
     top  <= y_current * (3 - (x * temp));
     y_next <= top / 2;
-    y_current <= y_next(W_bits - 1 downto 0);
+
+
 
    end process;
 

@@ -9,7 +9,7 @@ z2
 cModel Technology
 dC:/Modeltech_pe_edu_10.4a/examples
 Enewton_iteration
-Z0 w1580845676
+Z0 w1580849830
 Z1 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
@@ -18,13 +18,13 @@ Z5 8C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\newton_iteration
 Z6 FC:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\newton_iteration.vhd
 l0
 L8
-V<HCCbho5lNH1EW`fNddh10
-!s100 ZMQMA<iCYV<a[Z^f0anP^3
+Vi7=5B8Pef`7iMjER1V1G=3
+!s100 n;hJIL>`z[5FhN2PaD1513
 Z7 OP;C;10.4a;61
 32
-Z8 !s110 1580846893
+Z8 !s110 1580849834
 !i10b 1
-Z9 !s108 1580846893.000000
+Z9 !s108 1580849834.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\newton_iteration.vhd|
 Z11 !s107 C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\newton_iteration.vhd|
 !i113 1
@@ -34,11 +34,11 @@ Anewton_iteration_arch
 R1
 R2
 R3
-DEx4 work 16 newton_iteration 0 22 <HCCbho5lNH1EW`fNddh10
-l22
+Z14 DEx4 work 16 newton_iteration 0 22 i7=5B8Pef`7iMjER1V1G=3
+l28
 L17
-VAiZ2hOzF^fXe;IIeM6VG53
-!s100 8:;d9]WNZZfFkTm]j3HLm1
+VUF:]ZBW<l3la@hPgGLe@f3
+!s100 =^aPj`T=i4ZfQVkJ7e4>]2
 R7
 32
 R8
@@ -50,30 +50,30 @@ R11
 R12
 R13
 Etestbench
-Z14 w1580847050
-Z15 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+Z15 w1580847050
+Z16 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
 R3
 R2
 R1
 R4
-Z16 8C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd
-Z17 FC:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd
+Z17 8C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd
+Z18 FC:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd
 l0
 L10
 V`zF>Le<JMENmSMRJN`;`82
 !s100 bWIa>CeVK6Tc5Xgn`5ZNc0
 R7
 32
-Z18 !s110 1580847055
+Z19 !s110 1580847055
 !i10b 1
-Z19 !s108 1580847055.000000
-Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd|
-Z21 !s107 C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd|
+Z20 !s108 1580847055.000000
+Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd|
+Z22 !s107 C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd|
 !i113 1
 R12
 R13
 Atestbench_arch
-R15
+R16
 R3
 R2
 R1
@@ -84,11 +84,11 @@ VP67:`g<>HD<CbcQDz3A`80
 !s100 ]iUomS>3kUkfC25=oPJa>1
 R7
 32
-R18
-!i10b 1
 R19
+!i10b 1
 R20
 R21
+R22
 !i113 1
 R12
 R13
