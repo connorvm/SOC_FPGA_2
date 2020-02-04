@@ -32,7 +32,7 @@ constant c_WIDTH : natural := 4;
 
   begin
 
-dut : newton_iteration
+dut : add_1
    generic map(W_bits => 12,
                F_bits => 4)
    port map(
