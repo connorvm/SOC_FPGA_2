@@ -12,7 +12,9 @@ entity testbench is
 end; 
 
 architecture testbench_arch of testbench is
-component add_1 is
+component newton_iteration is
+  generic map (W_bits   : positive;
+               F_bits   : positive);
   port (input_vector  : in  std_logic_vector (7 downto 0);
 	output_vector : out std_logic_vector (7 downto 0));
 end component;
@@ -31,6 +33,8 @@ constant c_WIDTH : natural := 4;
   begin
 
 dut : add_1
+   generic map(W_bits => 12,
+               F_bits => 4)
    port map(
       input_vector  => input_sig,
       output_vector => output_sig);
