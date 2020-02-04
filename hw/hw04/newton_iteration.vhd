@@ -18,6 +18,12 @@ architecture newton_iteration_arch of newton_iteration is
 
   signal input : unsigned(7 downto 0);
   signal output : unsigned(7 downto 0);
+  signal z      : unsigned;
+  signal beta   : signed; -- can be even or odd
+  signal alpha  : signed; -- can be even or odd
+  signal x_alpha : unsigned;
+  signal x_beta : unsigned;
+  signal y_o : unsigned;
 
   begin
 
