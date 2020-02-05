@@ -21,8 +21,8 @@ component newton_iteration is
 end component;
 
 signal y_current_sig : unsigned(7 downto 0) := "00000001"; -- y_current = 1
-signal x	     : unsigned(7 downto 0) := "00000010"; -- x = 2
-signal output_sig    : unsigned(7 downto 0) := "00000000";
+signal x_sig	     : unsigned(7 downto 0) := "00001111"; -- x = 15
+signal output_sig    : unsigned(7 downto 0);
 
 -----------------------------------------------------------------------------
   -- Testbench Internal Signals
@@ -39,6 +39,7 @@ dut : newton_iteration
                F_bits => 4)
    port map(
       y_current => y_current_sig,
+      x		=> x_sig,
       output    => output_sig);
 
 ------------------------------------------------------------------------------------------------------------

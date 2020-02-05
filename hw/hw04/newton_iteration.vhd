@@ -30,13 +30,15 @@ architecture newton_iteration_arch of newton_iteration is
 
     --y_(n+1) = (y_n(3 -x(y_n)^2))/2
 
-   process(y_o, x)
+   process --(y_o, x)
     begin
 
     temp <= y_current * y_current;
     top  <= y_current * (3 - (x * temp));
     y_next <= top / 2;
     output <= y_next(W_bits - 1 downto 0);
+
+   wait for 20ns;
 
    end process;
 

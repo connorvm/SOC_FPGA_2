@@ -20,9 +20,9 @@ component newton_iteration is
 	output    : out unsigned(W_bits - 1 downto 0));
 end component;
 
-signal y_current_sig : unsigned(7 downto 0) := "00000001"; -- y_current = 1
-signal x_sig	     : unsigned(7 downto 0) := "00000010"; -- x = 2
-signal output_sig    : unsigned(7 downto 0) := "00000000";
+signal y_current_sig : unsigned(7 downto 0) := "00000010"; -- y_current = 2
+signal x_sig	     : unsigned(7 downto 0) := "00000101"; -- x = 5 
+signal output_sig    : unsigned(7 downto 0);
 
 -----------------------------------------------------------------------------
   -- Testbench Internal Signals
