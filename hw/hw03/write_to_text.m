@@ -1,12 +1,38 @@
+%--------------------------------------------------------------------------
+% Description:  Matlab script to create the lookup table used in creating
+% the initial guess y0 to start Newtons Method for y = 1/sqrt(x);
+%--------------------------------------------------------------------------
+% Author:       Ross K. Snider
+% Company:      Montana State University
+% Create Date:  March 20, 2014
+% Script Name:  rsqrt.m
+% Tool Version: MATLAB: 8.2.0.701 (R2013b)
+% Revision:     1.0
+%--------------------------------------------------------------------------
+% Copyright (c) 2013 Ross K. Snider.
+% All rights reserved. Redistribution and use in source and binary forms 
+% are permitted provided that the above copyright notice and this paragraph 
+% are duplicated in all such forms and that any documentation, advertising 
+% materials, and other materials related to such distribution and use 
+% acknowledge that the software was developed by Montana State University 
+% (MSU).  The name of MSU may not be used to endorse or promote products 
+% derived from this software without specific prior written permission.
+% THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+% IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+% WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. 
+%--------------------------------------------------------------------------
+
 clear all
 close all
+%-----------------------------------------------
 
 %-----------------------------------------
 % Create lookup table for (x_beta)^(-3/2)
 %-----------------------------------------
-Nbits_address = 8;  % How many fraction bits will be used as the address?
-Nwords = 2^Nbits_address
-for i=0:(Nwords-1)  % Need to compute each memory entry (i.e. memory size)
+Nbits_address = 16;  % How many fraction bits will be used as the address?
+Nwords = 2^Nbits_address;
+tic
+parfor i=0:(Nwords-1)  % Need to compute each memory entry (i.e. memory size)
     x_beta_table{i+1}.address = i;  % Memory Address
     fa = fi(i,0,Nbits_address,0);
     fa_bits = fa.bin;               % Memory Address in binary
@@ -16,6 +42,8 @@ for i=0:(Nwords-1)  % Need to compute each memory entry (i.e. memory size)
     x_beta_table{i+1}.input_bits = fa.bin;  % keep track of the input bits
 
 end
+toc
+
 
 %----------------------------------------------------
 % Create the Altera .mif file for the lookup table
@@ -25,11 +53,12 @@ fid = fopen('input_vectors.txt','w');
 %------------------------------------
 % Write Memory Data
 %------------------------------------
+tic
 for data_index = 1:Nwords
     line = [x_beta_table{data_index}.input_bits];
     fprintf(fid,'%s\n',line);
 end
-
+toc
 %------------------------------------
 % Close File
 %------------------------------------
