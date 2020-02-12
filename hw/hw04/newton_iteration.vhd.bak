@@ -1,5 +1,6 @@
 -- Authors: Connor Van Meter & Alex Salois
 -- EELE 468
+-- HW_4
 
 library IEEE;
 use IEEE.numeric_std.all;
@@ -10,19 +11,17 @@ entity newton_iteration is
   generic (W_bits   : positive := 8;
            F_bits   : positive := 4);
 
-  port (y_current : in  unsigned(W_bits - 1 downto 0);
+  port (clock     : in std_logic;
+  	reset     : in std_logic;
+	y_current : in  unsigned(W_bits - 1 downto 0);
 	x	  : in  unsigned(W_bits - 1 downto 0);
-	output    : out unsigned(2*W_bits - 1 downto 0));
+	output    : out unsigned(W_bits - 1 downto 0));
 end entity;
 
 architecture newton_iteration_arch of newton_iteration is
 
-  --signal input     : unsigned(7 downto 0);
-  --signal output    : unsigned(7 downto 0);
   signal y_o	   : unsigned(W_bits - 1 downto 0);
-  --signal x  	   : unsigned(W_bits - 1 downto 0);
   signal y_next	   : unsigned(4*W_bits - 1 downto 0);
-  --signal y_current : unsigned(W_bits - 1 downto 0);
   signal temp	   : unsigned(2*W_bits - 1 downto 0);
   signal top	   : unsigned(4*W_bits - 1 downto 0);
 
@@ -30,20 +29,22 @@ architecture newton_iteration_arch of newton_iteration is
 
     --y_(n+1) = (y_n(3 -x(y_n)^2))/2
 
-   process --(y_o, x)
+   process (clock, reset)
     begin
+   if(reset = '0') then
+	output <= "0";
+   elsif(rising_edge(clock)) then
 
-    temp <= y_current * y_current;
-    top  <= y_current * (3 - (x * temp));
-    y_next <= top / 2;
-    output <= y_next(2*W_bits - 1 downto 0);
+    output <= ((y_current(3 - x*(y_current * y_current)))/2)(W_bits - 1 downto 0);
+    --temp <= y_current * y_current;
+    --top  <= y_current * (3 - (x * temp));
+    --y_next <= top / 2;
+    --output <= y_next(W_bits - 1 downto 0);
 
-   wait for 20ns;
+   end if;
+
 
    end process;
 
---    input  <= unsigned(input_vector);
---    output <= input + "00000001";
---    output_vector <= std_logic_vector(output);
 
 end architecture;

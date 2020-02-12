@@ -9,7 +9,7 @@ z2
 cModel Technology
 dC:/Modeltech_pe_edu_10.4a/examples
 Enewton_iteration
-Z0 w1581449012
+Z0 w1581549783
 Z1 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
@@ -18,13 +18,13 @@ Z5 8C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\newton_iteration
 Z6 FC:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\newton_iteration.vhd
 l0
 L9
-V8UB9<nBKnHYCJBBPmT7DX0
-!s100 i24fjEZ2CnRnG9iAAYf@33
+V^5e9KcOIScM>RKZbMShn_1
+!s100 IGT[RPW@nbO4h<RZ2Ed;E1
 Z7 OP;C;10.4a;61
 32
-Z8 !s110 1581450552
+Z8 !s110 1581550445
 !i10b 1
-Z9 !s108 1581450552.000000
+Z9 !s108 1581550445.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\newton_iteration.vhd|
 Z11 !s107 C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\newton_iteration.vhd|
 !i113 1
@@ -34,11 +34,11 @@ Anewton_iteration_arch
 R1
 R2
 R3
-DEx4 work 16 newton_iteration 0 22 8UB9<nBKnHYCJBBPmT7DX0
-l26
-L19
-VO1UHZMUjd<==A3iS?5GlL0
-!s100 WHKa3E1OeFkAe;Zm`DZ_:1
+DEx4 work 16 newton_iteration 0 22 ^5e9KcOIScM>RKZbMShn_1
+l28
+L21
+V5Ehlhl1?39h4l2ZmlU]ff1
+!s100 Kk=m=a=1Lf=Hcj^56]:=`2
 R7
 32
 R8
@@ -50,7 +50,7 @@ R11
 R12
 R13
 Etestbench
-Z14 w1581450550
+Z14 w1581550443
 Z15 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
 R3
 R2
@@ -60,8 +60,8 @@ Z16 8C:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd
 Z17 FC:\Users\akdre\OneDrive\Desktop\EELE 468\SOC_FPGA_2\hw\hw04\testbench.vhd
 l0
 L10
-V`zF>Le<JMENmSMRJN`;`82
-!s100 bWIa>CeVK6Tc5Xgn`5ZNc0
+V72HENk1?3>IL<]8]1I=`W2
+!s100 B[Z>]jg:Q5]b]HA:[RoH@2
 R7
 32
 R8
@@ -77,11 +77,11 @@ R15
 R3
 R2
 R1
-Z20 DEx4 work 9 testbench 0 22 `zF>Le<JMENmSMRJN`;`82
-l35
-L14
-Z21 V55oRLKPPK3EJHcA]6dT_O1
-Z22 !s100 gVG5IkcPW=UDhY6EMNfE;3
+Z20 DEx4 work 9 testbench 0 22 72HENk1?3>IL<]8]1I=`W2
+l46
+L16
+VgVYdE]a7cFnDK_oNUoUF61
+!s100 bUdDN_4AVF@fIfczAoAam2
 R7
 32
 R8

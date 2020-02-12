@@ -11,7 +11,9 @@ entity newton_iteration is
   generic (W_bits   : positive := 8;
            F_bits   : positive := 4);
 
-  port (y_current : in  unsigned(W_bits - 1 downto 0);
+  port (clock     : in std_logic;
+  	reset     : in std_logic;
+	y_current : in  unsigned(W_bits - 1 downto 0);
 	x	  : in  unsigned(W_bits - 1 downto 0);
 	output    : out unsigned(W_bits - 1 downto 0));
 end entity;
@@ -27,17 +29,65 @@ architecture newton_iteration_arch of newton_iteration is
 
     --y_(n+1) = (y_n(3 -x(y_n)^2))/2
 
-   process --(y_o, x)
-    begin
+  process (clock, reset)
+   begin
+    if(reset = '0') then
+	output <= "0";
+    elsif(rising_edge(clock)) then
 
-    temp <= y_current * y_current;
-    top  <= y_current * (3 - (x * temp));
-    y_next <= top / 2;
-    output <= y_next(W_bits - 1 downto 0);
+     --output <= ((y_current(3 - x*(y_current * y_current)))/2)(W_bits - 1 downto 0);
+     temp <= y_current * y_current;
+     --top  <= y_current * (3 - (x * temp));
+     --y_next <= top / 2;
+     --output <= y_next(W_bits - 1 downto 0);
 
-   wait for 20ns;
+    end if;
+  end process;
 
-   end process;
+  process (clock, reset)
+   begin
+    if(reset = '0') then
+	output <= "0";
+    elsif(rising_edge(clock)) then
+
+     --output <= ((y_current(3 - x*(y_current * y_current)))/2)(W_bits - 1 downto 0);
+     --temp <= y_current * y_current;
+     top  <= y_current * (3 - (x * temp));
+     --y_next <= top / 2;
+     --output <= y_next(W_bits - 1 downto 0);
+
+    end if;
+  end process;
+
+  process (clock, reset)
+   begin
+    if(reset = '0') then
+	output <= "0";
+    elsif(rising_edge(clock)) then
+
+     --output <= ((y_current(3 - x*(y_current * y_current)))/2)(W_bits - 1 downto 0);
+     --temp <= y_current * y_current;
+     --top  <= y_current * (3 - (x * temp));
+     y_next <= top / 2;
+     --output <= y_next(W_bits - 1 downto 0);
+
+    end if;
+  end process;
+
+  process (clock, reset)
+   begin
+    if(reset = '0') then
+	output <= "0";
+    elsif(rising_edge(clock)) then
+
+     --output <= ((y_current(3 - x*(y_current * y_current)))/2)(W_bits - 1 downto 0);
+     --temp <= y_current * y_current;
+     --top  <= y_current * (3 - (x * temp));
+     --y_next <= top / 2;
+     output <= y_next(W_bits - 1 downto 0);
+
+    end if;
+  end process;
 
 
 end architecture;

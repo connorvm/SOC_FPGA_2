@@ -8,21 +8,32 @@ use STD.textio.all;
 use IEEE.std_logic_textio.all;
 
 entity testbench is
-  PORT ( count : BUFFER bit_vector(8 downto 1));
-end; 
+  port( clock : in std_logic;
+	reset : in std_logic;
+	count : BUFFER bit_vector(8 downto 1));
+end entity; 
 
 architecture testbench_arch of testbench is
+
+constant t_clk_per : time := 100 ns;
+
 component newton_iteration is
   generic (W_bits   : positive;
            F_bits   : positive);
-  port (y_current : in  unsigned(W_bits - 1 downto 0);
+  port (clock 	  : in std_logic;
+	reset	  : in std_logic;
+	y_current : in  unsigned(W_bits - 1 downto 0);
 	x	  : in  unsigned(W_bits - 1 downto 0);
 	output    : out unsigned(W_bits - 1 downto 0));
 end component;
 
+signal clock_TB      : std_logic;
+signal reset_TB      : std_logic;
 signal y_current_sig : unsigned(7 downto 0) := "00000010"; -- y_current = 2
 signal x_sig	     : unsigned(7 downto 0) := "00000101"; -- x = 5 
 signal output_sig    : unsigned(7 downto 0);
+
+
 
 -----------------------------------------------------------------------------
   -- Testbench Internal Signals
@@ -38,9 +49,30 @@ dut : newton_iteration
    generic map(W_bits => 8,
                F_bits => 4)
    port map(
+      clock     => clock_TB,
+      reset 	=> reset_TB,
       y_current => y_current_sig,
       x		=> x_sig,
       output    => output_sig);
+
+CLOCK_STIM : process
+ begin
+   clock_TB <= '0'; wait for 0.5*t_clk_per; 
+   clock_TB <= '1'; wait for 0.5*t_clk_per; 
+ end process;
+-----------------------------------------------      
+RESET_STIM : process
+ begin
+--   reset_TB <= '0'; wait for 1.5*t_clk_per; 
+   reset_TB <= '1'; wait; 
+end process;
+
+STIM : process
+ begin
+    y_current_sig <= y_current_sig + "1"; --wait for 10ns;
+    x_sig <= x_sig + "1"; wait for 50ns;
+
+end process;
 
 ------------------------------------------------------------------------------------------------------------
 ---- Process to read in .txt file. Taken from https://www.nandland.com/vhdl/examples/example-file-io.html --
