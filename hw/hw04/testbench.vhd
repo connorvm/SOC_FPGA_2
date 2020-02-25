@@ -24,13 +24,13 @@ component newton_iteration is
 	reset	  : in std_logic;
 	y_current : in  unsigned(W_bits - 1 downto 0);
 	x	  : in  unsigned(W_bits - 1 downto 0);
-	output    : out unsigned(W_bits - 1 downto 0));
+	output_n    : out unsigned(W_bits - 1 downto 0));
 end component;
 
 signal clock_TB      : std_logic;
 signal reset_TB      : std_logic;
 signal y_current_sig : unsigned(7 downto 0) := "00000010"; -- y_current = 2
-signal x_sig	     : unsigned(7 downto 0) := "00000101"; -- x = 5 
+signal x_sig	       : unsigned(7 downto 0) := "00000101"; -- x = 5 
 signal output_sig    : unsigned(7 downto 0);
 
 
@@ -53,7 +53,7 @@ dut : newton_iteration
       reset 	=> reset_TB,
       y_current => y_current_sig,
       x		=> x_sig,
-      output    => output_sig);
+      output_n    => output_sig);
 
 CLOCK_STIM : process
  begin
