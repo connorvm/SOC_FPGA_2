@@ -8,9 +8,6 @@ use STD.textio.all;
 use IEEE.std_logic_textio.all;
 
 entity testbench is
-  port( clock : in std_logic;
-	reset : in std_logic;
-	count : BUFFER bit_vector(8 downto 1));
 end entity; 
 
 architecture testbench_arch of testbench is
@@ -24,14 +21,19 @@ component newton_iteration is
 	reset	  : in std_logic;
 	y_current : in  unsigned(W_bits - 1 downto 0);
 	x	  : in  unsigned(W_bits - 1 downto 0);
-	output_n    : out unsigned(W_bits - 1 downto 0));
+	out_n  : out unsigned(W_bits - 1 downto 0));
 end component;
 
-signal clock_TB      : std_logic;
-signal reset_TB      : std_logic;
-signal y_current_sig : unsigned(7 downto 0) := "00000010"; -- y_current = 2
-signal x_sig	       : unsigned(7 downto 0) := "00000101"; -- x = 5 
-signal output_sig    : unsigned(7 downto 0);
+signal clock_TB      : std_logic := '1';
+signal reset_TB      : std_logic := '1';
+signal relay_0	     : unsigned(7 downto 0) := (others => '0');
+signal relay_1	     : unsigned(7 downto 0) := (others => '0');
+signal relay_2	     : unsigned(7 downto 0) := (others => '0');
+signal relay_3	     : unsigned(7 downto 0) := (others => '0');
+signal relay_4	     : unsigned(7 downto 0) := (others => '0');
+signal y_current_sig : unsigned(7 downto 0) := "00010000"; -- y_current = 1
+signal x_sig	     : unsigned(7 downto 0) := "00010000"; -- x = 1
+signal output_sig    : unsigned(7 downto 0) ;
 
 
 
@@ -49,16 +51,15 @@ dut : newton_iteration
    generic map(W_bits => 8,
                F_bits => 4)
    port map(
-      clock     => clock_TB,
-      reset 	=> reset_TB,
-      y_current => y_current_sig,
-      x		=> x_sig,
-      output_n    => output_sig);
+      clock       => clock_TB,
+      reset 	  => reset_TB,
+      y_current   => y_current_sig,
+      x		  => x_sig,
+      out_n    => output_sig);
 
 CLOCK_STIM : process
  begin
-   clock_TB <= '0'; wait for 0.5*t_clk_per; 
-   clock_TB <= '1'; wait for 0.5*t_clk_per; 
+   clock_TB <= not clock_TB; wait for 0.5*t_clk_per; 
  end process;
 -----------------------------------------------      
 RESET_STIM : process
@@ -67,12 +68,17 @@ RESET_STIM : process
    reset_TB <= '1'; wait; 
 end process;
 
-STIM : process
- begin
-    y_current_sig <= y_current_sig + "1"; --wait for 10ns;
-    x_sig <= x_sig + "1"; wait for 50ns;
+STIM : process(clock_TB)
+begin
+  if(rising_edge(clock_TB)) then
+    relay_0 <= output_sig;
+    relay_1 <= relay_0;
+    relay_2 <= relay_1;
+    relay_3 <= relay_2;
+    relay_4 <= relay_3; --y_current_sig <= relay_4;
+  end if;
+end process; 
 
-end process;
 
 ------------------------------------------------------------------------------------------------------------
 ---- Process to read in .txt file. Taken from https://www.nandland.com/vhdl/examples/example-file-io.html --
