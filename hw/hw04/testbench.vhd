@@ -12,16 +12,17 @@ end entity;
 
 architecture testbench_arch of testbench is
 
-constant t_clk_per : time := 100 ns;
+constant t_clk_per : time := 10 ns;
 
 component newton_iteration is
   generic (W_bits   : positive;
            F_bits   : positive);
+
   port (clock 	  : in std_logic;
 	reset	  : in std_logic;
-	y_current : in  unsigned(W_bits - 1 downto 0);
+	y_in      : in  unsigned(W_bits - 1 downto 0);
 	x	  : in  unsigned(W_bits - 1 downto 0);
-	out_n  : out unsigned(W_bits - 1 downto 0));
+	out_n     : out unsigned(W_bits - 1 downto 0));
 end component;
 
 signal clock_TB      : std_logic := '1';
@@ -31,9 +32,9 @@ signal relay_1	     : unsigned(7 downto 0) := (others => '0');
 signal relay_2	     : unsigned(7 downto 0) := (others => '0');
 signal relay_3	     : unsigned(7 downto 0) := (others => '0');
 signal relay_4	     : unsigned(7 downto 0) := (others => '0');
-signal y_current_sig : unsigned(7 downto 0) := "00010000"; -- y_current = 1
+signal y_current_sig : unsigned(7 downto 0) := "00010000";
 signal x_sig	     : unsigned(7 downto 0) := "00010000"; -- x = 1
-signal output_sig    : unsigned(7 downto 0) ;
+signal output_sig    : unsigned(7 downto 0) := "00010000";
 
 
 
@@ -42,21 +43,19 @@ signal output_sig    : unsigned(7 downto 0) ;
 -----------------------------------------------------------------------------
 file file_VECTORS : text;
 file file_RESULTS : text;
-
 constant c_WIDTH : natural := 4;
 
-  begin
+begin
 
 dut : newton_iteration
    generic map(W_bits => 8,
                F_bits => 4)
    port map(
-      clock       => clock_TB,
-      reset 	  => reset_TB,
-      y_current   => y_current_sig,
-      x		  => x_sig,
-      out_n    => output_sig);
-
+      clock     => clock_TB,
+      reset 	=> reset_TB,
+      y_in      => y_current_sig,
+      x		=> x_sig,
+      out_n    	=> output_sig);
 CLOCK_STIM : process
  begin
    clock_TB <= not clock_TB; wait for 0.5*t_clk_per; 
@@ -68,16 +67,6 @@ RESET_STIM : process
    reset_TB <= '1'; wait; 
 end process;
 
-STIM : process(clock_TB)
-begin
-  if(rising_edge(clock_TB)) then
-    relay_0 <= output_sig;
-    relay_1 <= relay_0;
-    relay_2 <= relay_1;
-    relay_3 <= relay_2;
-    relay_4 <= relay_3; --y_current_sig <= relay_4;
-  end if;
-end process; 
 
 
 ------------------------------------------------------------------------------------------------------------
