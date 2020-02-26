@@ -34,7 +34,7 @@ signal relay_3	     : unsigned(7 downto 0) := (others => '0');
 signal relay_4	     : unsigned(7 downto 0) := (others => '0');
 signal y_current_sig : unsigned(7 downto 0) := "00010000";
 signal x_sig	     : unsigned(7 downto 0) := "00010000"; -- x = 1
-signal output_sig    : unsigned(7 downto 0) := "00010000";
+signal output_sig    : unsigned(7 downto 0) := "00000000";
 
 
 

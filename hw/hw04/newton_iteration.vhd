@@ -35,23 +35,21 @@ architecture newton_iteration_arch of newton_iteration is
   signal square    : unsigned(2*W_bits - 1 downto 0) := (others => '0');
   signal top	   : unsigned(4*W_bits - 1 downto 0) := (others => '0');
 
+  constant three : unsigned(3*W_bits - 1 downto 0) := (3*F_bits + 1 downto 3*F_bits => '1', others => '0');
+
   begin
     --y_(n+1) = (y_n(3 -x(y_n)^2))/2
   process (clock, reset)
    begin
     if(reset = '0') then
-	out_n <= "0";
+	out_n <= "0";     		
     elsif(rising_edge(clock)) then
     	square 	  <= y_in * y_in; -- square y_current
     	xy_square <= x_relay_0 * square;
-	minus 	  <= 3 - xy_square;
+	minus 	  <= three - xy_square;
 	top       <= y_relay_3 * minus;
      	y_next 	  <= shift_right(top, 1); -- divide by 2
-	out_0 	  <= y_next((4*F_bits -1) + (W_bits - F_bits) -1 downto 4*F_bits - (W_bits - F_bits) -1);
-	out_1 	  <= y_next((4*F_bits -1) + (W_bits - F_bits) +1 downto 4*F_bits - (W_bits - F_bits) +1);
-	--out_2 	<= y_next((4*F_bits -1) + (W_bits - F_bits) -1 downto 4*F_bits - (W_bits - F_bits));
-	--out_3 	<= y_next((4*F_bits -1) + (W_bits - F_bits) -1 downto 4*F_bits - (W_bits - F_bits));
-    	out_n 	<= y_next((4*F_bits -1) + (W_bits - F_bits) downto 4*F_bits - (W_bits - F_bits));
+    	out_n 	<= y_next((4*F_bits -1) + (W_bits - F_bits) downto 4*F_bits -  F_bits);
 
     end if;
   end process;
