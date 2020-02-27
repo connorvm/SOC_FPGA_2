@@ -25,15 +25,11 @@ architecture newton_iteration_arch of newton_iteration is
   signal y_relay_2 : unsigned(W_bits - 1 downto 0) := (others => '0');
   signal y_relay_3 : unsigned(W_bits - 1 downto 0) := (others => '0');
   signal x_relay_0 : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal out_0     : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal out_1     : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal out_2     : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal out_3     : unsigned(W_bits - 1 downto 0) := (others => '0');
   signal Y_next    : unsigned(4*W_bits - 1 downto 0) := (others => '0');
   signal xy_square : unsigned(3*W_bits - 1 downto 0) := (others => '0');
   signal minus     : unsigned(3*W_bits - 1 downto 0) := (others => '0');
   signal square    : unsigned(2*W_bits - 1 downto 0) := (others => '0');
-  signal top	   : unsigned(4*W_bits - 1 downto 0) := (others => '0');
+  signal top	     : unsigned(4*W_bits - 1 downto 0) := (others => '0');
 
   constant three : unsigned(3*W_bits - 1 downto 0) := (3*F_bits + 1 downto 3*F_bits => '1', others => '0');
 
