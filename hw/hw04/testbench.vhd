@@ -27,14 +27,9 @@ end component;
 
 signal clock_TB      : std_logic := '1';
 signal reset_TB      : std_logic := '1';
-signal relay_0	     : unsigned(7 downto 0) := (others => '0');
-signal relay_1	     : unsigned(7 downto 0) := (others => '0');
-signal relay_2	     : unsigned(7 downto 0) := (others => '0');
-signal relay_3	     : unsigned(7 downto 0) := (others => '0');
-signal relay_4	     : unsigned(7 downto 0) := (others => '0');
-signal y_current_sig : unsigned(7 downto 0) := "00010000";
-signal x_sig	     : unsigned(7 downto 0) := "00010000"; -- x = 1
-signal output_sig    : unsigned(7 downto 0) := "00000000";
+signal y_current_sig : unsigned(31 downto 0) := (28 => '1', others => '0');
+signal x_sig	     : unsigned(31 downto 0) := (28 => '1', others => '0');
+signal output_sig    : unsigned(31 downto 0) := (others => '0');
 
 
 
@@ -48,8 +43,8 @@ constant c_WIDTH : natural := 4;
 begin
 
 dut : newton_iteration
-   generic map(W_bits => 8,
-               F_bits => 4)
+   generic map(W_bits => 32,
+               F_bits => 28)
    port map(
       clock     => clock_TB,
       reset 	=> reset_TB,
