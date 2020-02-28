@@ -8,7 +8,7 @@ use STD.textio.all;
 use IEEE.std_logic_textio.all;
 
 entity testbench is
-end entity; 
+end entity;
 
 architecture testbench_arch of testbench is
 
