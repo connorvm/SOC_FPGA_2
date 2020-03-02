@@ -78,38 +78,27 @@ toc
 fclose(fid);
 
 %%
+clear all
+close all
 clc
-width = 16; % max bit depth supported by fi accel is 128 (use less then 32) 
-frac = width -2;
-x_fi = fi(1, 0, width, frac);
-y_fi = fi(1, 0, width, frac);
-three_fi = fi(3, 0, width, frac);
-argsIn = {x_fi, y_fi, three_fi};
-step = 0.002; % carful this can change the run time 
 
-if width > 31
-    tic        
-    for i = 0:step:2
-        x_fi = fi(i, 0, width, frac);
-        % y_fi = fi(1, 0, width, frac);
-        x = newton_iteration(x_fi, y_fi, three_fi);
-        x = fi(x, 0, width, frac);
-        x.bin;
-    end
-    toc
-    
-elseif width < 32 && width > 0
-    tic
-    % compile c code
-    fiaccel  newton_iteration... % function
-            -args argsIn... % number and argumanets in
-            -nargout 1  % number of outputs
-    for i = 0:step:2
-        x_fi = fi(i, 0, width, frac);
-        % y_fi = fi(1, 0, width, frac);
-        x = newton_iteration_mex(x_fi, y_fi, three_fi); % use the c function
-        x = fi(x, 0, width, frac);
-        x.bin;
-    end
-    toc
+width = 128; % full bit width
+frac = width - 2; % fractional bit width
+y_fi = fi(1, 0, width, frac); % y input
+three_fi = fi(3, 0, width, frac); % three in the fixed point
+top = 2^(width-frac); % the top limit
+range = 0:top/(width^2):top*(1 - 1/(width^2)); % every posiblilty
+x_fi = fi(range, 0, width, frac); % convert to fixed point
+x_fi.bin; % show the binary
+y_out = newton_iteration(x_fi, y_fi, three_fi); % do one iter of newtons
+y_out_fi = fi(y_out, 0, width, frac); % resize
+
+%% for kicks and giggles
+for i = 1:10
+y_out = newton_iteration(y_out_fi, y_fi, three_fi);
+y_out_fi = fi(y_out, 0, width, frac);
 end
+
+
+
+    
