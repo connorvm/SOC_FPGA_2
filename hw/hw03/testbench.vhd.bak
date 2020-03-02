@@ -61,7 +61,7 @@ process
         wait for 60 ns;
    
         write(output_line, output_sig);
-        writeline(file_RESULTS, output_sig);
+        writeline(file_RESULTS, output_line);
       end loop;
    
       file_close(file_VECTORS);

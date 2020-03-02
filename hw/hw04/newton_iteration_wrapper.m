@@ -81,18 +81,25 @@ fclose(fid);
 clear all
 close all
 clc
-
-width = 128; % full bit width
+vhdl = readmatrix('outputs.txt', 'outputType' ,'uint8'); % read in vhdl output
+vhdl = vhdl';
+vhdl = circshift(vhdl , -2);
+width = 8; % full bit width
 frac = width - 2; % fractional bit width
+fid = fopen('outputs.bin');
+format = 'ubit8';
+b = fread(fid,Inf,format); % this one works
+fclose(fid);
 y_fi = fi(1, 0, width, frac); % y input
 three_fi = fi(3, 0, width, frac); % three in the fixed point
 top = 2^(width-frac); % the top limit
-range = 0:top/(width^2):top*(1 - 1/(width^2)); % every posiblilty
+range = 0:top/(2^width):top*( 1 - 1/(2^width)); % every posiblilty
 x_fi = fi(range, 0, width, frac); % convert to fixed point
 x_fi.bin; % show the binary
 y_out = newton_iteration(x_fi, y_fi, three_fi); % do one iter of newtons
 y_out_fi = fi(y_out, 0, width, frac); % resize
-
+y_out_fi;
+results = y_out_fi - b
 %% for kicks and giggles
 for i = 1:10
 y_out = newton_iteration(y_out_fi, y_fi, three_fi);

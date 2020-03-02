@@ -58,7 +58,7 @@ process
         -- Pass the variable to a signal to allow the ripple-carry to use it
         input_sig <= v_ADD_TERM;
    
-        wait for 60 ns;
+        wait for 10 ns;
    
         write(output_line, output_sig);
         writeline(file_RESULTS, output_line);
