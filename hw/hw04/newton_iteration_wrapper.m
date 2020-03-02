@@ -76,3 +76,7 @@ toc
 % Close File
 %------------------------------------
 fclose(fid);
+
+%%
+x = newton_iteration(1, 1, 8, 6);
+x.bin

@@ -1,7 +1,14 @@
-function [output] = newton_iteration(w_bits,f_bits, y, x)
-%NEWTON_ITERATION_0 Summary of this function goes here
-%   Detailed explanation goes here
-    fy = fi(y, 1, w_bits, f_bits);
-    fx = fi(x, 1, w_bits, f_bits);
-    output = fy * (3 - fx * fy^2) / 2;
+function [newton_fi] = newton_iteration(x_in, y_in, width, frac)
+    %NEWTON_ITEATIONR Summary of this function goes here
+    % make the below into c
+     x_fi = fi(x_in, 0, width, frac);
+     y_fi = fi(y_in, 0, width, frac);
+     three_fi = fi(3, 0, width, frac);
+     square = y_fi * y_fi;
+     xy_square = x_fi * square;
+     minus = three_fi - xy_square;
+     top = y_fi * minus;
+     out = top /2;
+     newton_fi = fi(out, 0, width, frac);
 end
+
