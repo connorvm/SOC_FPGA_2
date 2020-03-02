@@ -15,38 +15,46 @@ entity yo_block is
   	    reset   : in std_logic;
 	      y_in    : in  unsigned(W_bits - 1 downto 0);
  	      x	      : in  unsigned(W_bits - 1 downto 0);
-	      out_n   : out unsigned(W_bits - 1 downto 0));
+	      yo_n   : out unsigned(W_bits - 1 downto 0));
 end entity;
 
 architecture yo_block_arch of yo_block is
 
-  signal y_relay_0 : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal y_relay_1 : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal y_relay_2 : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal y_relay_3 : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal x_relay_0 : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal Y_next    : unsigned(4*W_bits - 1 downto 0) := (others => '0');
-  signal xy_square : unsigned(3*W_bits - 1 downto 0) := (others => '0');
-  signal minus     : unsigned(3*W_bits - 1 downto 0) := (others => '0');
-  signal square    : unsigned(2*W_bits - 1 downto 0) := (others => '0');
-  signal top	     : unsigned(4*W_bits - 1 downto 0) := (others => '0');
+  signal Z         : unsigned(W_bits - 1 downto 0);
+  signal beta      : std_logic_vector(W_bits - 1 downto 0);
+  signal alpha     : unsigned(W_bits - 1 downto 0);
+  signal a_temp1   : unsigned(W_bits - 1 downto 0);
+  signal a_temp2   : unsigned(W_bits - 1 downto 0);
+  signal x_beta    : unsigned(W_bits - 1 downto 0);
+  signal x_alpha   : unsigned(W_bits - 1 downto 0);
 
   constant three : unsigned(3*W_bits - 1 downto 0) := (3*F_bits + 1 downto 3*F_bits => '1', others => '0');
 
   begin
-    --y_(n+1) = (y_n(3 -x(y_n)^2))/2
+    
   process (clock, reset)
   begin
     if(reset = '0') then
-	out_n <= "0";
+	yo_n <= "0";
     elsif(rising_edge(clock)) then
-    	square 	  <= y_in * y_in; -- square y_current
-    	xy_square <= x_relay_0 * square;
-	    minus 	  <= three - xy_square;
-	    top       <= y_relay_3 * minus;
-      y_next 	  <= shift_right(top, 1); -- divide by 2
-    	out_n 	<= y_next((4*F_bits -1) + (W_bits - F_bits) downto 4*F_bits -  F_bits);
+    beta <= W_bits - F_bits - Z - 1;
+    
+        if((beta mod 2) = 0) then -- beta is even
+        --alpha = -2*beta + 0.5*beta
+        --left shift is multiplaction, right shift is division
+        a_temp1 <= shift_left(unsigned(beta), 1);
+        a_temp2 <= shift_right(unsigned(beta), 1);
+        alpha <= -a_temp1 + a_temp2;
+    
+        else --beta is odd
+        --alpha = -2*beta + 0.5*beta + 0.5
+        a_temp1 <= shift_left(unsigned(beta), 1);
+        a_temp2 <= shift_right(unsigned(beta), 1);
+        alpha <= a_temp1 + a_temp2 + 
 
+        end if;
+
+    	
     end if;
   end process;
 
