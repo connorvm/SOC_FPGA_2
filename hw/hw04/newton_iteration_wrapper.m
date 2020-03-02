@@ -78,5 +78,35 @@ toc
 fclose(fid);
 
 %%
-x = newton_iteration(1, 1, 8, 6);
-x.bin
+clc
+width = 31; % max bit depth supported by fi accel is 128
+frac = 20;
+x_fi = fi(1, 0, width, frac);
+y_fi = fi(1, 0, width, frac);
+three_fi = fi(3, 0, width, frac);
+argsIn = {x_fi, y_fi, three_fi};
+fiaccel  newton_iteration... % function
+            -args argsIn... % number and argumanets in
+            -nargout 1  % number of outputs
+
+% slower one
+tic        
+for i = 0:0.001:2
+    x_fi = fi(i, 0, width, frac);
+    % y_fi = fi(1, 0, width, frac);
+    x = newton_iteration(x_fi, y_fi, three_fi);
+    x = fi(x, 0, width, frac);
+    x.bin;
+end
+toc
+
+% faster one
+tic        
+for i = 0:0.001:2
+    x_fi = fi(i, 0, width, frac);
+    % y_fi = fi(1, 0, width, frac);
+    x = newton_iteration_mex(x_fi, y_fi, three_fi);
+    x = fi(x, 0, width, frac);
+    x.bin;
+end
+toc
