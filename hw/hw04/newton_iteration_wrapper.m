@@ -77,7 +77,7 @@ toc
 %------------------------------------
 fclose(fid);
 
-%%
+%% use for newton iteration
 clear all
 close all
 clc
