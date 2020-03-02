@@ -79,34 +79,37 @@ fclose(fid);
 
 %%
 clc
-width = 31; % max bit depth supported by fi accel is 128
-frac = 20;
+width = 16; % max bit depth supported by fi accel is 128 (use less then 32) 
+frac = width -2;
 x_fi = fi(1, 0, width, frac);
 y_fi = fi(1, 0, width, frac);
 three_fi = fi(3, 0, width, frac);
 argsIn = {x_fi, y_fi, three_fi};
-fiaccel  newton_iteration... % function
+step = 0.002; % carful this can change the run time 
+
+if width > 31
+    tic        
+    for i = 0:step:2
+        x_fi = fi(i, 0, width, frac);
+        % y_fi = fi(1, 0, width, frac);
+        x = newton_iteration(x_fi, y_fi, three_fi);
+        x = fi(x, 0, width, frac);
+        x.bin;
+    end
+    toc
+    
+elseif width < 32 && width > 0
+    tic
+    % compile c code
+    fiaccel  newton_iteration... % function
             -args argsIn... % number and argumanets in
             -nargout 1  % number of outputs
-
-% slower one
-tic        
-for i = 0:0.001:2
-    x_fi = fi(i, 0, width, frac);
-    % y_fi = fi(1, 0, width, frac);
-    x = newton_iteration(x_fi, y_fi, three_fi);
-    x = fi(x, 0, width, frac);
-    x.bin;
+    for i = 0:step:2
+        x_fi = fi(i, 0, width, frac);
+        % y_fi = fi(1, 0, width, frac);
+        x = newton_iteration_mex(x_fi, y_fi, three_fi); % use the c function
+        x = fi(x, 0, width, frac);
+        x.bin;
+    end
+    toc
 end
-toc
-
-% faster one
-tic        
-for i = 0:0.001:2
-    x_fi = fi(i, 0, width, frac);
-    % y_fi = fi(1, 0, width, frac);
-    x = newton_iteration_mex(x_fi, y_fi, three_fi);
-    x = fi(x, 0, width, frac);
-    x.bin;
-end
-toc
