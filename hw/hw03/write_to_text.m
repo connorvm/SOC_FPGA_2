@@ -1,65 +1,25 @@
-%--------------------------------------------------------------------------
-% Description:  Matlab script to create the lookup table used in creating
-% the initial guess y0 to start Newtons Method for y = 1/sqrt(x);
-%--------------------------------------------------------------------------
-% Author:       Ross K. Snider
-% Company:      Montana State University
-% Create Date:  March 20, 2014
-% Script Name:  rsqrt.m
-% Tool Version: MATLAB: 8.2.0.701 (R2013b)
-% Revision:     1.0
-%--------------------------------------------------------------------------
-% Copyright (c) 2013 Ross K. Snider.
-% All rights reserved. Redistribution and use in source and binary forms 
-% are permitted provided that the above copyright notice and this paragraph 
-% are duplicated in all such forms and that any documentation, advertising 
-% materials, and other materials related to such distribution and use 
-% acknowledge that the software was developed by Montana State University 
-% (MSU).  The name of MSU may not be used to endorse or promote products 
-% derived from this software without specific prior written permission.
-% THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
-% IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
-% WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. 
-%--------------------------------------------------------------------------
-
 clear all
 close all
-%-----------------------------------------------
+clc
 
-%-----------------------------------------
-% Create lookup table for (x_beta)^(-3/2)
-%-----------------------------------------
-Nbits_address = 16;  % How many fraction bits will be used as the address?
-Nwords = 2^Nbits_address;
-tic
-parfor i=0:(Nwords-1)  % Need to compute each memory entry (i.e. memory size)
-    x_beta_table{i+1}.address = i;  % Memory Address
-    fa = fi(i,0,Nbits_address,0);
-    fa_bits = fa.bin;               % Memory Address in binary
-    fb = fi(0, 0, Nbits_address+1, Nbits_address);  % Set number of bits for result
-    fb.bin = ['1' fa_bits]; % set the value using the binary representation. The address is our input value 1 <= x_beta < 2  where the leading 1 has been added.
-    x_beta_table{i+1}.input_value = double(fb);  % convert this binary input to it's double representation
-    x_beta_table{i+1}.input_bits = fa.bin;  % keep track of the input bits
+w_bits = 32;
+f_bits = 16; 
+test = rand(10000,1);
+test_fi = (2^(w_bits - f_bits) - 1) .* test;
+test_fi = fi(test_fi, 0, w_bits, f_bits);
+test_bin = test_fi.bin;
+test_cell = cellstr(test_bin);
+fileID = fopen('input_32_16.txt','w');
+fprintf(fileID,'%s \r \n', test_cell{:});
+fclose(fileID);
 
-end
-toc
-
-
-%----------------------------------------------------
-% Create the Altera .mif file for the lookup table
-%----------------------------------------------------
-fid = fopen('input_vectors.txt','w');
-
-%------------------------------------
-% Write Memory Data
-%------------------------------------
-tic
-for data_index = 1:Nwords
-    line = [x_beta_table{data_index}.input_bits];
-    fprintf(fid,'%s\n',line);
-end
-toc
-%------------------------------------
-% Close File
-%------------------------------------
-fclose(fid);
+w_bits = 28;
+f_bits = 20; 
+test = rand(10000,1);
+test_fi = (2^(w_bits - f_bits) - 1) .* test;
+test_fi = fi(test_fi, 0, w_bits, f_bits);
+test_bin = test_fi.bin;
+test_cell = cellstr(test_bin);
+fileID = fopen('input_28_20.txt','w');
+fprintf(fileID,'%s \r \n', test_cell{:});
+fclose(fileID);
