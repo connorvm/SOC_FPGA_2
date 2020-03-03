@@ -14,7 +14,7 @@ end entity;
 architecture testbench_arch of testbench is
 
 constant t_clk_per : time := 10 ns;
-constant W         : integer := 20;
+constant W         : integer := 32;
 constant F         : integer := 16;
 constant c_WIDTH   : natural := 4;
 
@@ -76,8 +76,8 @@ process
 
     begin
 
-      file_open(file_VECTORS, "input_vectors_20.txt",  read_mode);
-      file_open(file_RESULTS, "outputs_20_16.txt", write_mode);
+      file_open(file_VECTORS, "input_32_16.txt",  read_mode);
+      file_open(file_RESULTS, "output_32_16.txt", write_mode);
 
       while not endfile(file_VECTORS) loop
         readline(file_VECTORS, line_input);
