@@ -14,6 +14,9 @@ end entity;
 architecture testbench_arch of testbench is
 
 constant t_clk_per : time := 10 ns;
+constant W         : integer := 20;
+constant F         : integer := 16;
+constant c_WIDTH   : natural := 4;
 
 component newton_iteration is
   generic (W_bits   : positive;
@@ -28,25 +31,25 @@ end component;
 
 signal clock_TB      : std_logic := '1';
 signal reset_TB      : std_logic := '1';
-signal y_current_sig : unsigned(7 downto 0) := (6 => '1', others => '0');
-signal x_sig	     : unsigned(7 downto 0) := (6 => '1', others => '0');
-signal output_sig    : unsigned(7 downto 0) := (others => '0');
+signal y_current_sig : unsigned(W - 1 downto 0) := (F + 1 => '1', others => '0');
+signal x_sig	     : unsigned(W - 1 downto 0) := (F + 1 => '1', others => '0');
+signal output_sig    : unsigned(W - 1 downto 0) := (others => '0');
 
 -----------------------------------------------------------------------------
   -- Testbench Internal Signals
 -----------------------------------------------------------------------------
 file file_VECTORS : text;
 file file_RESULTS : text;
-constant c_WIDTH : natural := 4;
+
 
 begin
 
 dut : newton_iteration
-   generic map(W_bits => 8,
-               F_bits => 6)
+   generic map(W_bits => W,
+               F_bits => F)
    port map(
       clock     => clock_TB,
-      reset 	=> reset_TB,
+      reset    	=> reset_TB,
       y_in      => y_current_sig,
       x		=> x_sig,
       out_n    	=> output_sig);
@@ -68,29 +71,29 @@ end process;
 process
       variable line_input     : line;
       variable output_line    : line;
-      variable v_ADD_TERM     : std_logic_vector(7 downto 0);
+      variable v_ADD_TERM     : std_logic_vector(W - 1 downto 0);
       variable space          : character;
-       
+
     begin
-   
-      file_open(file_VECTORS, "input_vectors.txt",  read_mode);
-      file_open(file_RESULTS, "outputs.txt", write_mode);
-   
+
+      file_open(file_VECTORS, "input_vectors_20.txt",  read_mode);
+      file_open(file_RESULTS, "outputs_20_16.txt", write_mode);
+
       while not endfile(file_VECTORS) loop
         readline(file_VECTORS, line_input);
         read(line_input, v_ADD_TERM);
-   
+
         x_sig <= unsigned(v_ADD_TERM);
-   
+
         wait for t_clk_per;
-   
+
         write(output_line, std_logic_vector(output_sig));
         writeline(file_RESULTS, output_line);
       end loop;
-   
+
       file_close(file_VECTORS);
       file_close(file_RESULTS);
-       
+
       wait;
     end process;
 
