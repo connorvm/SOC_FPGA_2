@@ -17,14 +17,14 @@ vhdl = readmatrix(vhdl_out,'OutputType','char'); % read in vhdl output
 vhdl = bin2dec(vhdl); % convert to decimal value
 vhdl_fi = fi(vhdl, 0, width, 0, F); % make fixed point
 T = numerictype(0, width, frac);
-vhdl_fi = reinterpretcast(vhdl_fi, T);
+vhdl_fi = reinterpretcast(vhdl_fi, T);% needed to convert it to the right W.f
 vhdl_fi = vhdl_fi';
 
 input = readmatrix(vhdl_in,'OutputType','char');
 input = bin2dec(input); % convert to decimal value
 input_fi = fi(input, 0, width, 0, F); % make fixed point
 T = numerictype(0, width, frac);
-input_fi = reinterpretcast(input_fi, T);
+input_fi = reinterpretcast(input_fi, T);% needed to convert it to the right W.f
 input_fi = input_fi';
 
 % to check every possible
@@ -65,14 +65,14 @@ vhdl = readmatrix(vhdl_out,'OutputType','char'); % read in vhdl output
 vhdl = bin2dec(vhdl); % convert to decimal value
 vhdl_fi = fi(vhdl, 0, width, 0, F); % make fixed point
 T = numerictype(0, width, frac);
-vhdl_fi = reinterpretcast(vhdl_fi, T);
+vhdl_fi = reinterpretcast(vhdl_fi, T);% needed to convert it to the right W.f
 vhdl_fi = vhdl_fi';
 
 input = readmatrix(vhdl_in,'OutputType','char');
 input = bin2dec(input); % convert to decimal value
 input_fi = fi(input, 0, width, 0, F); % make fixed point
 T = numerictype(0, width, frac);
-input_fi = reinterpretcast(input_fi, T);
+input_fi = reinterpretcast(input_fi, T); % needed to convert it to the right W.f
 input_fi = input_fi';
 
 % newton iteration block
