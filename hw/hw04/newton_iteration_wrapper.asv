@@ -82,19 +82,24 @@ clear all
 close all
 clc
 width = 8; % full bit width
-frac = 6; % fractional bit width
-F = fimath('RoundingMethod','zero')
+frac = 5; % fractional bit width
+
 vhdl = readmatrix('outputs.txt','OutputType','char'); % read in vhdl output
 vhdl = bin2dec(vhdl); % convert to decimal value
-vhdl_fi = fi(vhdl, 0, width, frac, F); % make fixed point
+vhdl_fi = fi(vhdl, 0, width, frac); % make fixed point
 vhdl_fi = circshift(vhdl_fi , 0);% shift 2 
 vhdl_fi = vhdl_fi';
-y_fi = fi(1, 0, width, frac, F); % y input
-three_fi = fi(3, 0, width, frac, F); % in the fixed point
+y_fi = fi(1, 0, width, frac); % y input
+three_fi = fi(3, 0, width, frac); % in the fixed point
 top = 2^(width-frac); % the top limit
 range = 0:top/(2^width):top*( 1 - 1/(2^width)); % every posiblilty
 x_fi = fi(range, 0, width, frac); % convert to fixed point
+x_fi.bin; % show the binary
 y_out = newton_iteration(x_fi, y_fi, three_fi); % do one iter of newtons
 y_out_fi = fi(y_out, 0, width, frac); % resize
-compare = vhdl_fi(1, size(vhdl) - 255: size(vhdl));
+y_out_fi;
+step = 5;
+compare = vhdl_fi(1,step:size(vhdl)-step);
 results = y_out_fi - compare
+vhdl_fi(1, 1:3);
+y_out_fi(1,1:3);

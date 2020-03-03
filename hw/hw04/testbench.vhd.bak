@@ -43,7 +43,7 @@ begin
 
 dut : newton_iteration
    generic map(W_bits => 8,
-               F_bits => 6)
+               F_bits => 5)
    port map(
       clock     => clock_TB,
       reset 	=> reset_TB,
@@ -82,7 +82,7 @@ process
    
         x_sig <= unsigned(v_ADD_TERM);
    
-        wait for 2*t_clk_per;
+        wait for t_clk_per;
    
         write(output_line, std_logic_vector(output_sig));
         writeline(file_RESULTS, output_line);

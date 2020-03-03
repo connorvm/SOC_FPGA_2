@@ -73,8 +73,8 @@ process
        
     begin
    
-      file_open(file_VECTORS, "input_vectors.bin",  read_mode);
-      file_open(file_RESULTS, "outputs.bin", write_mode);
+      file_open(file_VECTORS, "input_vectors.txt",  read_mode);
+      file_open(file_RESULTS, "outputs.txt", write_mode);
    
       while not endfile(file_VECTORS) loop
         readline(file_VECTORS, line_input);
@@ -82,7 +82,7 @@ process
    
         x_sig <= unsigned(v_ADD_TERM);
    
-        wait for 2*t_clk_per;
+        wait for t_clk_per;
    
         write(output_line, std_logic_vector(output_sig));
         writeline(file_RESULTS, output_line);
