@@ -14,8 +14,8 @@ end entity;
 architecture testbench_arch of testbench is
 
 constant t_clk_per : time := 10 ns;
-constant W         : natural := 8;
-constant F         : natural := 6;
+constant W         : integer := 20;
+constant F         : integer := 16;
 constant c_WIDTH   : natural := 4;
 
 component newton_iteration is
@@ -23,16 +23,16 @@ component newton_iteration is
            F_bits   : positive);
 
   port (clock 	  : in std_logic;
-	reset	    : in std_logic;
+	reset	  : in std_logic;
 	y_in      : in  unsigned(W_bits - 1 downto 0);
-	x	        : in  unsigned(W_bits - 1 downto 0);
+	x	  : in  unsigned(W_bits - 1 downto 0);
 	out_n     : out unsigned(W_bits - 1 downto 0));
 end component;
 
 signal clock_TB      : std_logic := '1';
 signal reset_TB      : std_logic := '1';
-signal y_current_sig : unsigned(W - 1 downto 0) := (others => '0');
-signal x_sig	       : unsigned(W - 1 downto 0) := (others => '0');
+signal y_current_sig : unsigned(W - 1 downto 0) := (F + 1 => '1', others => '0');
+signal x_sig	     : unsigned(W - 1 downto 0) := (F + 1 => '1', others => '0');
 signal output_sig    : unsigned(W - 1 downto 0) := (others => '0');
 
 -----------------------------------------------------------------------------
@@ -51,7 +51,7 @@ dut : newton_iteration
       clock     => clock_TB,
       reset    	=> reset_TB,
       y_in      => y_current_sig,
-      x		      => x_sig,
+      x		=> x_sig,
       out_n    	=> output_sig);
 CLOCK_STIM : process
  begin
@@ -76,8 +76,8 @@ process
 
     begin
 
-      file_open(file_VECTORS, "input_vectors.txt",  read_mode);
-      file_open(file_RESULTS, "outputs.txt", write_mode);
+      file_open(file_VECTORS, "input_vectors_20.txt",  read_mode);
+      file_open(file_RESULTS, "outputs_20_16.txt", write_mode);
 
       while not endfile(file_VECTORS) loop
         readline(file_VECTORS, line_input);
