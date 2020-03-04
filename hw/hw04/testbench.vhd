@@ -29,11 +29,22 @@ component newton_iteration is
 	out_n     : out unsigned(W_bits - 1 downto 0));
 end component;
 
+component yo_block is
+  generic (W_bits   : positive;
+           F_bits   : positive);
+
+  port (clock 	  : in std_logic;
+	reset	  : in std_logic;
+	x	  : in  unsigned(W_bits - 1 downto 0);
+	yo_n      : out unsigned(W_bits - 1 downto 0));
+end component;
+
 signal clock_TB      : std_logic := '1';
 signal reset_TB      : std_logic := '1';
 signal y_current_sig : unsigned(W - 1 downto 0) := (F + 1 => '1', others => '0');
 signal x_sig	     : unsigned(W - 1 downto 0) := (F + 1 => '1', others => '0');
 signal output_sig    : unsigned(W - 1 downto 0) := (others => '0');
+signal yo_output_sig : unsigned(W - 1 downto 0) := (others => '0');
 
 -----------------------------------------------------------------------------
   -- Testbench Internal Signals
@@ -53,6 +64,16 @@ dut : newton_iteration
       y_in      => y_current_sig,
       x		=> x_sig,
       out_n    	=> output_sig);
+
+dut2 : yo_block
+  generic map(W_bits => W,
+              F_bits => F)
+  port map(clock => clock_TB,
+           reset => reset_TB,
+           x     => x_sig,
+           yo_n  => yo_output_sig);
+
+
 CLOCK_STIM : process
  begin
    clock_TB <= not clock_TB; wait for 0.5*t_clk_per; 
