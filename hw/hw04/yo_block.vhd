@@ -38,16 +38,15 @@ architecture yo_block_arch of yo_block is
   signal x_beta_lookup : unsigned(W_bits - 1 downto 0) := (others => '0');  
   signal address_sig   : std_logic_vector(F_bits downto 0) := (others => '0');
   signal q_sig         : std_logic_vector(W_bits - 1 downto 0) := (others => '0');
-  signal temp	       : unsigned(2 * W_bits downto 0) := (others => '0');
+  signal temp1	       : unsigned(2 * W_bits - 1 downto 0) := (others => '0');
+  signal temp2	       : unsigned(2 * W_bits downto 0) := (others => '0');
 
   begin
     
   ROM_inst : ROM 
-	PORT MAP (
-		address	 => address_sig,
-		clock	 => clock,
-		q	 => q_sig
-	);
+	port map(address	 => address_sig,
+		 clock	 => clock,
+		 q	 => q_sig);
 
   process (clock, reset)
   begin
@@ -84,15 +83,16 @@ architecture yo_block_arch of yo_block is
 	address_sig <= std_logic_vector(x_beta(F_bits downto 0));
         x_beta_lookup <= unsigned(q_sig);
 
-        --Compute yo_n, depending on pos or neg beta
+        --Compute yo_n, depending on pos or neg beta--
         if((beta mod 2) = 0) then -- beta is even
         --yo_n = x_alpha*(x_beta^(-3/2))
-        yo_n <= x_alpha * x_beta_lookup;
+	temp1 <= x_alpha * x_beta_lookup;
+        yo_n <= temp1(W_bits - 1 downto 0);
         
         else --beta is odd
         --yo_n = x_alpha*(x_beta^(-3/2))*(2^(-1/2))
-	temp <= x_alpha * x_beta_lookup * to_unsigned(integer(0.70710678118), 1);
-        yo_n <= temp(W_bits - 1 downto 0);
+	temp2 <= x_alpha * x_beta_lookup * to_unsigned(integer(0.70710678118), 1);
+        yo_n <= temp2(W_bits - 1 downto 0);
         
         end if;
 
