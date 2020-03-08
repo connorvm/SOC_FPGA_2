@@ -1,6 +1,6 @@
 -- Authors: Connor Van Meter & Alex Salois
 -- EELE 468
--- HW_4
+-- Lab01
 
 library IEEE;
 use IEEE.numeric_std.all;
@@ -27,14 +27,14 @@ architecture yo_block_arch of yo_block is
 		q		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0));
    end component;
 
-  signal Z         : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal beta      : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal int_beta  : integer;
-  signal alpha     : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal a_temp1   : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal a_temp2   : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal x_beta    : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal x_alpha   : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal Z             : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal beta          : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal int_beta      : integer;
+  signal alpha         : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal a_temp1       : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal a_temp2       : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal x_beta        : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal x_alpha       : unsigned(W_bits - 1 downto 0) := (others => '0');
   signal x_beta_lookup : unsigned(W_bits - 1 downto 0) := (others => '0');  
   signal address_sig   : std_logic_vector(F_bits downto 0) := (others => '0');
   signal q_sig         : std_logic_vector(W_bits - 1 downto 0) := (others => '0');

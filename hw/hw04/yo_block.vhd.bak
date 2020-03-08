@@ -40,7 +40,6 @@ architecture yo_block_arch of yo_block is
   signal q_sig         : std_logic_vector(W_bits - 1 downto 0) := (others => '0');
   signal temp1	       : unsigned(2 * W_bits - 1 downto 0) := (others => '0');
   signal temp2	       : unsigned(2 * W_bits downto 0) := (others => '0');
-  signal temp3         : unsigned(2 * W_bits - 1 downto 0) := (others => '0');
 
   begin
     
