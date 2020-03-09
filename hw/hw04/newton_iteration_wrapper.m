@@ -38,7 +38,7 @@ vhdl_in = 'input_28_20.txt';
 % fixed point properties
 width = 28; % full bit width
 frac = 20; % fractional bit width
-F = fimath('RoundingMethod','floor', 'CastBeforeSum', 0, 'OverflowAction', 'saturate');
+F = fimath('RoundingMethod','floor');
 
 % file handling
 vhdl_fi = import_file(vhdl_out, width, frac, F);

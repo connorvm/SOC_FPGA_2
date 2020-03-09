@@ -66,7 +66,7 @@ architecture yo_block_arch of yo_block is
         --alpha = -2*beta + 0.5*beta + 0.5
         a_temp1 <= shift_left(unsigned(beta), 1);
         a_temp2 <= shift_right(unsigned(beta), 1);
-        alpha <= a_temp2 - a_temp1 + to_unsigned(integer(0.5), 1);
+        alpha <= a_temp2 - a_temp1 + to_unsigned(integer(1), 1);
 
         end if;
 
