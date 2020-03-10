@@ -1,6 +1,6 @@
 -- Authors: Connor Van Meter & Alex Salois
 -- EELE 468
--- HW_4
+-- Lab01
 
 library IEEE;
 use IEEE.numeric_std.all;
@@ -20,20 +20,34 @@ end entity;
 
 architecture yo_block_arch of yo_block is
 
-  signal Z         : unsigned(W_bits - 1 downto 0);
-  signal beta      : unsigned(W_bits - 1 downto 0);
-  signal int_beta  : integer;
-  signal alpha     : unsigned(W_bits - 1 downto 0);
-  signal a_temp1   : unsigned(W_bits - 1 downto 0);
-  signal a_temp2   : unsigned(W_bits - 1 downto 0);
-  signal x_beta    : unsigned(W_bits - 1 downto 0);
-  signal x_alpha   : unsigned(W_bits - 1 downto 0);
-  signal x_beta_lookup : unsigned(W_bits - 1 downto 0);
-  
-  --constant three : unsigned(3*W_bits - 1 downto 0) := (3*F_bits + 1 downto 3*F_bits => '1', others => '0');
+   component ROM is
+	port(
+		address		: IN STD_LOGIC_VECTOR (6 DOWNTO 0);
+		clock		: IN STD_LOGIC  := '1';
+		q		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0));
+   end component;
+
+  signal Z             : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal beta          : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal int_beta      : integer;
+  signal alpha         : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal a_temp1       : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal a_temp2       : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal x_beta        : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal x_alpha       : unsigned(W_bits - 1 downto 0) := (others => '0');
+  signal x_beta_lookup : unsigned(W_bits - 1 downto 0) := (others => '0');  
+  signal address_sig   : std_logic_vector(6 downto 0) := (others => '0');
+  signal q_sig         : std_logic_vector(11 downto 0) := (others => '0');
+  signal temp1	       : unsigned(2 * W_bits - 1 downto 0) := (others => '0');
+  signal temp2	       : unsigned(2 * W_bits downto 0) := (others => '0');
 
   begin
     
+  ROM_inst : ROM 
+	port map(address	 => address_sig,
+		 clock	 => clock,
+		 q	 => q_sig);
+
   process (clock, reset)
   begin
     if(reset = '0') then
@@ -65,16 +79,20 @@ architecture yo_block_arch of yo_block is
         x_beta <= x srl 1;
 
         --Get x_beta^(-3/2) via a lookup table
-        --x_beta_lookup <= something?;
+	--Use the fractional bits of x_beta as the address
+	address_sig <= std_logic_vector(x_beta(6 downto 0));
+        x_beta_lookup <= unsigned(q_sig);
 
-        --Compute yo_n, depending on pos or neg beta
+        --Compute yo_n, depending on pos or neg beta--
         if((beta mod 2) = 0) then -- beta is even
         --yo_n = x_alpha*(x_beta^(-3/2))
-        yo_n <= x_alpha * x_beta_lookup;
+	temp1 <= x_alpha * x_beta_lookup;
+        yo_n <= temp1(W_bits - 1 downto 0);
         
         else --beta is odd
         --yo_n = x_alpha*(x_beta^(-3/2))*(2^(-1/2))
-        yo_n <= x_alpha * x_beta_lookup * to_unsigned(integer(0.70710678118), 1);
+	temp2 <= x_alpha * x_beta_lookup * to_unsigned(integer(0.70710678118), 1);
+        yo_n <= temp2(W_bits - 1 downto 0);
         
         end if;
 
