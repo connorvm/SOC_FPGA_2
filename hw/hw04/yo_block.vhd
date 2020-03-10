@@ -22,9 +22,9 @@ architecture yo_block_arch of yo_block is
 
    component ROM is
 	port(
-		address		: IN STD_LOGIC_VECTOR (6 DOWNTO 0);
+		address		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
 		clock		: IN STD_LOGIC  := '1';
-		q		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0));
+		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0));
    end component;
 
   signal Z             : unsigned(W_bits - 1 downto 0) := (others => '0');
@@ -35,11 +35,11 @@ architecture yo_block_arch of yo_block is
   signal a_temp2       : unsigned(W_bits - 1 downto 0) := (others => '0');
   signal x_beta        : unsigned(W_bits - 1 downto 0) := (others => '0');
   signal x_alpha       : unsigned(W_bits - 1 downto 0) := (others => '0');
-  signal x_beta_lookup : unsigned(W_bits - 1 downto 0) := (others => '0');  
-  signal address_sig   : std_logic_vector(6 downto 0) := (others => '0');
-  signal q_sig         : std_logic_vector(11 downto 0) := (others => '0');
-  signal temp1	       : unsigned(2 * W_bits - 1 downto 0) := (others => '0');
-  signal temp2	       : unsigned(2 * W_bits downto 0) := (others => '0');
+  signal x_beta_lookup : unsigned(7 downto 0) := (others => '0');  
+  signal address_sig   : std_logic_vector(7 downto 0) := (others => '0');
+  signal q_sig         : std_logic_vector(7 downto 0) := (others => '0');
+  signal temp1	       : unsigned(W_bits - 1 + 8 downto 0) := (others => '0');
+  signal temp2	       : unsigned(W_bits - 1 + 9 downto 0) := (others => '0');
 
   begin
     
@@ -80,7 +80,7 @@ architecture yo_block_arch of yo_block is
 
         --Get x_beta^(-3/2) via a lookup table
 	--Use the fractional bits of x_beta as the address
-	address_sig <= std_logic_vector(x_beta(6 downto 0));
+	address_sig <= std_logic_vector(x_beta(7 downto 0));
         x_beta_lookup <= unsigned(q_sig);
 
         --Compute yo_n, depending on pos or neg beta--

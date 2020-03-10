@@ -3116,9 +3116,9 @@ Vo;>>bH5Z@cI<XK8mV1@:30
 !s100 I]KS:^1lR@ih=PFUU_1PO0
 R8
 32
-Z70 !s110 1583865966
+Z70 !s110 1583870690
 !i10b 1
-Z71 !s108 1583865966.000000
+Z71 !s108 1583870690.000000
 Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw04/newton_iteration.vhd|
 Z73 !s107 C:/Users/yassi/SOC_FPGA_2/hw/hw04/newton_iteration.vhd|
 !i113 1
@@ -3228,7 +3228,7 @@ R12
 R13
 R14
 Erom
-Z75 w1583865603
+Z75 w1583869867
 Z76 DPx9 altera_mf 20 altera_mf_components 0 22 ]Lb8n85a;jgdZcTlWHo692
 R4
 R5
@@ -3237,13 +3237,13 @@ Z77 8C:/Users/yassi/SOC_FPGA_2/ROM.vhd
 Z78 FC:/Users/yassi/SOC_FPGA_2/ROM.vhd
 l0
 L43
-VkAcRQ:[X3DFL_6e1Xd8KB3
-!s100 hC0<eg8XjG6971oX<L70_2
+Vfl_nBBeg=1G20f=@k79?41
+!s100 4LVWVoa2N[6LJD?YZmD0H0
 R8
 32
-Z79 !s110 1583865967
+Z79 !s110 1583870691
 !i10b 1
-Z80 !s108 1583865967.000000
+Z80 !s108 1583870691.000000
 Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/ROM.vhd|
 Z82 !s107 C:/Users/yassi/SOC_FPGA_2/ROM.vhd|
 !i113 1
@@ -3253,11 +3253,11 @@ Asyn
 R76
 R4
 R5
-Z83 DEx4 work 3 rom 0 22 kAcRQ:[X3DFL_6e1Xd8KB3
+Z83 DEx4 work 3 rom 0 22 fl_nBBeg=1G20f=@k79?41
 l57
 L53
-Z84 VU8XQlR:L=TC;onILXH^N<3
-Z85 !s100 dKG@QG8V`MzO=NOZfd6OZ1
+Z84 VLa`C:KB[l<IIC@BWU3N2<1
+Z85 !s100 5KI[nBC_Ld=`]NWY9_S;O2
 R8
 32
 R79
@@ -3875,7 +3875,7 @@ VdD;L7?UF^]2fBR`;BhAO33
 !s100 a0@>55TgSFo>0]DYL]O@P3
 R8
 32
-R70
+R79
 !i10b 1
 R71
 Z93 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd|
@@ -3895,7 +3895,7 @@ VJTLEMMSTJ38Dlg@zfz7mF3
 !s100 Y[7OB>aJfl4:89Ob>]TiB1
 R8
 32
-R70
+R79
 !i10b 1
 R71
 R93
@@ -3904,7 +3904,7 @@ R94
 R74
 R14
 Eyo_block
-Z95 w1583807654
+Z95 w1583870680
 R5
 R4
 R66
@@ -3919,7 +3919,7 @@ R8
 32
 R79
 !i10b 1
-R71
+R80
 Z98 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd|
 Z99 !s107 C:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd|
 !i113 1
@@ -3932,13 +3932,13 @@ R66
 DEx4 work 8 yo_block 0 22 >5>HCdMe?lRbKALIH_[0c3
 l44
 L21
-VUFD^k;fAb=hz`Pd_A@A1S3
-!s100 Z5l0=TUP4_kOT^>onEcnj1
+V[Ccgm<[_G<_dDF[g[CJ>:1
+!s100 JjBlb6>i47S`@mMk_3AUa3
 R8
 32
 R79
 !i10b 1
-R71
+R80
 R98
 R99
 !i113 1
