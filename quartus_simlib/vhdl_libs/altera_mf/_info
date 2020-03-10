@@ -3116,9 +3116,9 @@ Vo;>>bH5Z@cI<XK8mV1@:30
 !s100 I]KS:^1lR@ih=PFUU_1PO0
 R8
 32
-Z70 !s110 1583804955
+Z70 !s110 1583865966
 !i10b 1
-Z71 !s108 1583804955.000000
+Z71 !s108 1583865966.000000
 Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw04/newton_iteration.vhd|
 Z73 !s107 C:/Users/yassi/SOC_FPGA_2/hw/hw04/newton_iteration.vhd|
 !i113 1
@@ -3228,24 +3228,24 @@ R12
 R13
 R14
 Erom
-Z75 w1582663339
+Z75 w1583865603
 Z76 DPx9 altera_mf 20 altera_mf_components 0 22 ]Lb8n85a;jgdZcTlWHo692
 R4
 R5
 R67
-Z77 8C:/Users/yassi/SOC_FPGA_2/hw/hw05/ROM.vhd
-Z78 FC:/Users/yassi/SOC_FPGA_2/hw/hw05/ROM.vhd
+Z77 8C:/Users/yassi/SOC_FPGA_2/ROM.vhd
+Z78 FC:/Users/yassi/SOC_FPGA_2/ROM.vhd
 l0
-L42
-VQK?ASR=QnY5F6X:2lTc>h0
-!s100 102bA<DA`RSgNJRYifC`f1
+L43
+VkAcRQ:[X3DFL_6e1Xd8KB3
+!s100 hC0<eg8XjG6971oX<L70_2
 R8
 32
-R70
+Z79 !s110 1583865967
 !i10b 1
-R71
-Z79 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw05/ROM.vhd|
-Z80 !s107 C:/Users/yassi/SOC_FPGA_2/hw/hw05/ROM.vhd|
+Z80 !s108 1583865967.000000
+Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/ROM.vhd|
+Z82 !s107 C:/Users/yassi/SOC_FPGA_2/ROM.vhd|
 !i113 1
 R74
 R14
@@ -3253,18 +3253,18 @@ Asyn
 R76
 R4
 R5
-Z81 DEx4 work 3 rom 0 22 QK?ASR=QnY5F6X:2lTc>h0
-l56
-L52
-Z82 VNNiddJcWa:CnD_3i76E<63
-Z83 !s100 `R:dakRO?7UhzRCQ[7Eh^1
+Z83 DEx4 work 3 rom 0 22 kAcRQ:[X3DFL_6e1Xd8KB3
+l57
+L53
+Z84 VU8XQlR:L=TC;onILXH^N<3
+Z85 !s100 dKG@QG8V`MzO=NOZfd6OZ1
 R8
 32
-R70
-!i10b 1
-R71
 R79
+!i10b 1
 R80
+R81
+R82
 !i113 1
 R74
 R14
@@ -3343,7 +3343,7 @@ R3
 R2
 R4
 R5
-Z84 DEx4 work 10 signal_gen 0 22 YQhAH[BjXI=IAPU:7YjcF3
+Z86 DEx4 work 10 signal_gen 0 22 YQhAH[BjXI=IAPU:7YjcF3
 l51555
 L51397
 VJhM_85V8dTchQldPZDd7E2
@@ -3449,7 +3449,7 @@ R54
 R52
 R3
 R2
-R84
+R86
 R4
 R5
 R0
@@ -3656,7 +3656,7 @@ R13
 R14
 Estratixiii_lvds_rx
 R1
-Z85 DEx4 work 26 stratixiii_lvds_rx_channel 0 22 z^5GR24_QM@f]>@M[7j^M1
+Z87 DEx4 work 26 stratixiii_lvds_rx_channel 0 22 z^5GR24_QM@f]>@M[7j^M1
 R3
 R4
 R5
@@ -3699,7 +3699,7 @@ R14
 Estratixiii_lvds_rx_channel
 R1
 R35
-Z86 DEx4 work 22 stratixiii_lvds_rx_dpa 0 22 S9eGPnF^gOTdJ_c[0Tcb51
+Z88 DEx4 work 22 stratixiii_lvds_rx_dpa 0 22 S9eGPnF^gOTdJ_c[0Tcb51
 R3
 R4
 R5
@@ -3724,7 +3724,7 @@ Abehavior
 R3
 R4
 R5
-R85
+R87
 l33867
 L33762
 Vhbz7A<6fB1ge?hdkZaohA2
@@ -3765,7 +3765,7 @@ Abehavior
 R3
 R4
 R5
-R86
+R88
 l33410
 L33368
 V3W2RF@9`e]<6Ki`<^L6G93
@@ -3861,14 +3861,14 @@ R12
 R13
 R14
 Etestbench
-Z87 w1583274588
-Z88 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+Z89 w1583274588
+Z90 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
 R66
 R4
 R5
 R67
-Z89 8C:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd
-Z90 FC:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd
+Z91 8C:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd
+Z92 FC:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd
 l0
 L11
 VdD;L7?UF^]2fBR`;BhAO33
@@ -3878,13 +3878,13 @@ R8
 R70
 !i10b 1
 R71
-Z91 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd|
-Z92 !s107 C:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd|
+Z93 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd|
+Z94 !s107 C:/Users/yassi/SOC_FPGA_2/hw/hw04/testbench.vhd|
 !i113 1
 R74
 R14
 Atestbench_arch
-R88
+R90
 R66
 R4
 R5
@@ -3898,30 +3898,30 @@ R8
 R70
 !i10b 1
 R71
-R91
-R92
+R93
+R94
 !i113 1
 R74
 R14
 Eyo_block
-Z93 w1583804774
+Z95 w1583807654
 R5
 R4
 R66
 R67
-Z94 8C:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd
-Z95 FC:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd
+Z96 8C:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd
+Z97 FC:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd
 l0
 L10
 V>5>HCdMe?lRbKALIH_[0c3
 !s100 VI9^[1mTIjn2RNbkdR`:=0
 R8
 32
-R70
+R79
 !i10b 1
 R71
-Z96 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd|
-Z97 !s107 C:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd|
+Z98 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd|
+Z99 !s107 C:/Users/yassi/SOC_FPGA_2/hw/hw04/yo_block.vhd|
 !i113 1
 R74
 R14
@@ -3936,11 +3936,11 @@ VUFD^k;fAb=hz`Pd_A@A1S3
 !s100 Z5l0=TUP4_kOT^>onEcnj1
 R8
 32
-R70
+R79
 !i10b 1
 R71
-R96
-R97
+R98
+R99
 !i113 1
 R74
 R14
