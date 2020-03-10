@@ -9,7 +9,7 @@ z2
 cModel Technology
 dC:/Modeltech_pe_edu_10.4a/examples
 Enewton_iteration
-Z0 w1582926698
+Z0 w1582930298
 Z1 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
@@ -22,9 +22,9 @@ Vo;>>bH5Z@cI<XK8mV1@:30
 !s100 I]KS:^1lR@ih=PFUU_1PO0
 Z7 OP;C;10.4a;61
 32
-Z8 !s110 1583268469
+Z8 !s110 1583783220
 !i10b 1
-Z9 !s108 1583268469.000000
+Z9 !s108 1583783220.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/newton_iteration.vhd|
 Z11 !s107 C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/newton_iteration.vhd|
 !i113 1
@@ -34,11 +34,11 @@ Anewton_iteration_arch
 R1
 R2
 R3
-Z14 DEx4 work 16 newton_iteration 0 22 o;>>bH5Z@cI<XK8mV1@:30
+DEx4 work 16 newton_iteration 0 22 o;>>bH5Z@cI<XK8mV1@:30
 l36
 L21
-Z15 VzR9]H?_Mjd8@]==zd:3`M0
-Z16 !s100 lne4z6lZLJ`mVQMDMWSg]1
+VzR9]H?_Mjd8@]==zd:3`M0
+!s100 lne4z6lZLJ`mVQMDMWSg]1
 R7
 32
 R8
@@ -50,14 +50,14 @@ R11
 R12
 R13
 Etestbench
-Z17 w1583268465
-Z18 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+Z14 w1583780290
+Z15 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
 R3
 R2
 R1
 R4
-Z19 8C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/testbench.vhd
-Z20 FC:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/testbench.vhd
+Z16 8C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/testbench.vhd
+Z17 FC:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/testbench.vhd
 l0
 L11
 VdD;L7?UF^]2fBR`;BhAO33
@@ -67,28 +67,69 @@ R7
 R8
 !i10b 1
 R9
-Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/testbench.vhd|
-Z22 !s107 C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/testbench.vhd|
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/testbench.vhd|
+Z19 !s107 C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/testbench.vhd|
 !i113 1
 R12
 R13
 Atestbench_arch
-R18
+R15
 R3
 R2
 R1
 DEx4 work 9 testbench 0 22 dD;L7?UF^]2fBR`;BhAO33
-l45
+l56
 L14
-V6@QfiU@>:hSX5iaYo=`:43
-!s100 K0n]]S;jkkDC:9<69=?Eh1
+VJTLEMMSTJ38Dlg@zfz7mF3
+!s100 Y[7OB>aJfl4:89Ob>]TiB1
 R7
 32
 R8
 !i10b 1
 R9
-R21
-R22
+R18
+R19
+!i113 1
+R12
+R13
+Eyo_block
+Z20 w1583782861
+R1
+R2
+R3
+R4
+Z21 8C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/yo_block.vhd
+Z22 FC:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/yo_block.vhd
+l0
+L10
+V>5>HCdMe?lRbKALIH_[0c3
+!s100 VI9^[1mTIjn2RNbkdR`:=0
+R7
+32
+R8
+!i10b 1
+R9
+Z23 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/yo_block.vhd|
+Z24 !s107 C:/Users/asalo/Documents/SOC_FPGA_2/hw/hw04/yo_block.vhd|
+!i113 1
+R12
+R13
+Ayo_block_arch
+R1
+R2
+R3
+Z25 DEx4 work 8 yo_block 0 22 >5>HCdMe?lRbKALIH_[0c3
+l44
+L21
+Z26 V6o5@3@K5:7XDgL82]58]h1
+Z27 !s100 7aJg;HJPFTI1`6Xk>8`LK3
+R7
+32
+R8
+!i10b 1
+R9
+R23
+R24
 !i113 1
 R12
 R13
