@@ -43,4 +43,7 @@ mp = sm_init_avalon_signals(mp);  % create the avalon streaming signals
 %% Create the control signals before the simulation starts
 mp = sm_init_control_signals(mp);
 
+%% Set the echo delay
+delay = 3;  % delay in seconds
+
 
