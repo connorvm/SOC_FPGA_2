@@ -3,12 +3,13 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="303" />
+   <connections preferredWidth="335" />
    <irq preferredWidth="47" />
    <name preferredWidth="259" />
   </columns>
  </systemtable>
- <library expandedCategories="Library,Project" />
+ <library
+   expandedCategories="Project,Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library,Library/Basic Functions/Bridges and Adaptors,Library/Basic Functions" />
  <window width="3208" height="1746" x="-4" y="0" />
  <generation synthesis="VHDL" />
  <hdlexample language="VHDL" />

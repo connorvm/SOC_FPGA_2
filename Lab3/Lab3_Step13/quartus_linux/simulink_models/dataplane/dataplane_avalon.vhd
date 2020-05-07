@@ -33,7 +33,7 @@ architecture dataplane_avalon_arch of dataplane_avalon is
 
 
   -- component created by HDL Coder
-component dataplane_src_SG_dataplane 
+component dataplane_src_dataplane 
   PORT( clk                               :   IN    std_logic;
         reset                             :   IN    std_logic;
         clk_enable                        :   IN    std_logic;
@@ -57,7 +57,7 @@ end component;
 
 begin
 
-u_dataplane : dataplane_src_SG_dataplane
+u_dataplane : dataplane_src_dataplane
   port map(
     clk                                  =>  clk,
     reset                                =>  reset,

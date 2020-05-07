@@ -71,6 +71,7 @@
 			hps_spim0_ss_2_n                    : out   std_logic;                                        -- ss_2_n
 			hps_spim0_ss_3_n                    : out   std_logic;                                        -- ss_3_n
 			hps_spim0_sclk_out_clk              : out   std_logic;                                        -- clk
+			led_led                             : out   std_logic_vector(7 downto 0);                     -- led
 			memory_mem_a                        : out   std_logic_vector(14 downto 0);                    -- mem_a
 			memory_mem_ba                       : out   std_logic_vector(2 downto 0);                     -- mem_ba
 			memory_mem_ck                       : out   std_logic;                                        -- mem_ck
@@ -87,8 +88,7 @@
 			memory_mem_odt                      : out   std_logic;                                        -- mem_odt
 			memory_mem_dm                       : out   std_logic_vector(3 downto 0);                     -- mem_dm
 			memory_oct_rzqin                    : in    std_logic                     := 'X';             -- oct_rzqin
-			reset_reset_n                       : in    std_logic                     := 'X';             -- reset_n
-			led_led                             : out   std_logic_vector(7 downto 0)                      -- led
+			reset_reset_n                       : in    std_logic                     := 'X'              -- reset_n
 		);
 	end component soc_system;
 
@@ -165,6 +165,7 @@
 			hps_spim0_ss_2_n                    => CONNECTED_TO_hps_spim0_ss_2_n,                    --                        .ss_2_n
 			hps_spim0_ss_3_n                    => CONNECTED_TO_hps_spim0_ss_3_n,                    --                        .ss_3_n
 			hps_spim0_sclk_out_clk              => CONNECTED_TO_hps_spim0_sclk_out_clk,              --      hps_spim0_sclk_out.clk
+			led_led                             => CONNECTED_TO_led_led,                             --                     led.led
 			memory_mem_a                        => CONNECTED_TO_memory_mem_a,                        --                  memory.mem_a
 			memory_mem_ba                       => CONNECTED_TO_memory_mem_ba,                       --                        .mem_ba
 			memory_mem_ck                       => CONNECTED_TO_memory_mem_ck,                       --                        .mem_ck
@@ -181,7 +182,6 @@
 			memory_mem_odt                      => CONNECTED_TO_memory_mem_odt,                      --                        .mem_odt
 			memory_mem_dm                       => CONNECTED_TO_memory_mem_dm,                       --                        .mem_dm
 			memory_oct_rzqin                    => CONNECTED_TO_memory_oct_rzqin,                    --                        .oct_rzqin
-			reset_reset_n                       => CONNECTED_TO_reset_reset_n,                       --                   reset.reset_n
-			led_led                             => CONNECTED_TO_led_led                              --                     led.led
+			reset_reset_n                       => CONNECTED_TO_reset_reset_n                        --                   reset.reset_n
 		);
 
