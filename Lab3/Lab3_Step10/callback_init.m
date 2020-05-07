@@ -1,11 +1,12 @@
 [input_wav_signal,Fs_in] = audioread('acoustic.wav');
+Ts_in = 1/Fs_in;
 
 %% Set Aduio Data Sample Rate
 mp.Fs = 48000;   % sample rate of 48 kHz
 mp.Ts = 1/mp.Fs; % sample period
 
 %% Put signal into a timeseries format
-timevals = [0:length(input_wav_signal)-1]*mp.Ts;
+timevals = (0:length(input_wav_signal)-1)*Ts_in;
 input_signal = timeseries(input_wav_signal,timevals);
 
 %% Set the data type for audio signal (left and right channels) indata plane
@@ -13,7 +14,8 @@ mp.W_bits = 32;  % Word length
 mp.F_bits = 28; % Number of fractional bits in word
 
 %% Create test signals for the left and right channels
-stop_time = length(input_wav_signal) * mp.Ts;
+length(input_wav_signal)
+stop_time = length(input_wav_signal) * Ts_in
 
 %% Set the echo delay
-delay = 3;  % delay in seconds
+delay = floor(3 * Fs_in);  % delay in seconds
