@@ -1,0 +1,216 @@
+# request TCL package from ACDS 13.1
+package require -exact qsys 13.1
+
+# module dataplane
+set_module_property DESCRIPTION ""
+set_module_property NAME dataplane
+set_module_property VERSION 1.0
+set_module_property INTERNAL false
+set_module_property OPAQUE_ADDRESS_MAP true
+set_module_property GROUP "HDL Coder Generated IP"
+set_module_property AUTHOR ""
+set_module_property DISPLAY_NAME dataplane
+set_module_property INSTANTIATE_IN_SYSTEM_MODULE true
+set_module_property EDITABLE true
+set_module_property ANALYZE_HDL AUTO
+set_module_property REPORT_TO_TALKBACK false
+set_module_property ALLOW_GREYBOX_GENERATION false
+
+# documentation
+set docprefix file:///
+add_documentation_link "DATASHEET" [append docprefix [get_module_property MODULE_DIRECTORY] /doc/lab3_step9_ip_core_report.html]
+
+# file sets
+add_fileset QUARTUS_SYNTH QUARTUS_SYNTH "" ""
+set_fileset_property QUARTUS_SYNTH TOP_LEVEL dataplane
+set_fileset_property QUARTUS_SYNTH ENABLE_RELATIVE_INCLUDE_PATHS false
+add_fileset_file dataplane_src_dataplane_pkg.vhd VHDL PATH hdl/dataplane_src_dataplane_pkg.vhd 
+add_fileset_file dataplane_src_Chart.vhd VHDL PATH hdl/dataplane_src_Chart.vhd 
+add_fileset_file dataplane_src_LED_persistence_control.vhd VHDL PATH hdl/dataplane_src_LED_persistence_control.vhd 
+add_fileset_file dataplane_src_LED_persistence_control1.vhd VHDL PATH hdl/dataplane_src_LED_persistence_control1.vhd 
+add_fileset_file dataplane_src_LED_persistence_control2.vhd VHDL PATH hdl/dataplane_src_LED_persistence_control2.vhd 
+add_fileset_file dataplane_src_LED_persistence_control3.vhd VHDL PATH hdl/dataplane_src_LED_persistence_control3.vhd 
+add_fileset_file dataplane_src_LED_persistence_control4.vhd VHDL PATH hdl/dataplane_src_LED_persistence_control4.vhd 
+add_fileset_file dataplane_src_LED_persistence_control5.vhd VHDL PATH hdl/dataplane_src_LED_persistence_control5.vhd 
+add_fileset_file dataplane_src_LED_persistence_control6.vhd VHDL PATH hdl/dataplane_src_LED_persistence_control6.vhd 
+add_fileset_file dataplane_src_LED_persistence_control7.vhd VHDL PATH hdl/dataplane_src_LED_persistence_control7.vhd 
+add_fileset_file dataplane_src_LED_Driver.vhd VHDL PATH hdl/dataplane_src_LED_Driver.vhd 
+add_fileset_file dataplane_src_Min.vhd VHDL PATH hdl/dataplane_src_Min.vhd 
+add_fileset_file dataplane_src_MinMax.vhd VHDL PATH hdl/dataplane_src_MinMax.vhd 
+add_fileset_file dataplane_src_Normalize_Signal.vhd VHDL PATH hdl/dataplane_src_Normalize_Signal.vhd 
+add_fileset_file dataplane_src_Signal_Energy_Monitor.vhd VHDL PATH hdl/dataplane_src_Signal_Energy_Monitor.vhd 
+add_fileset_file dataplane_src_Sound_Effects.vhd VHDL PATH hdl/dataplane_src_Sound_Effects.vhd 
+add_fileset_file dataplane_src_Left_Channel_Processing.vhd VHDL PATH hdl/dataplane_src_Left_Channel_Processing.vhd 
+add_fileset_file dataplane_src_Sound_Effects_block.vhd VHDL PATH hdl/dataplane_src_Sound_Effects_block.vhd 
+add_fileset_file dataplane_src_Right_Channel_Processing.vhd VHDL PATH hdl/dataplane_src_Right_Channel_Processing.vhd 
+add_fileset_file dataplane_src_Avalon_Data_Processing.vhd VHDL PATH hdl/dataplane_src_Avalon_Data_Processing.vhd 
+add_fileset_file dataplane_src_dataplane.vhd VHDL PATH hdl/dataplane_src_dataplane.vhd 
+add_fileset_file dataplane_reset_sync.vhd VHDL PATH hdl/dataplane_reset_sync.vhd 
+add_fileset_file dataplane_dut.vhd VHDL PATH hdl/dataplane_dut.vhd 
+add_fileset_file dataplane.vhd VHDL PATH hdl/dataplane.vhd TOP_LEVEL_FILE
+
+# connection point ip_clk
+add_interface ip_clk clock end
+set_interface_property ip_clk clockRate 0
+set_interface_property ip_clk ENABLED true
+set_interface_property ip_clk EXPORT_OF ""
+set_interface_property ip_clk PORT_NAME_MAP ""
+set_interface_property ip_clk CMSIS_SVD_VARIABLES ""
+set_interface_property ip_clk SVD_ADDRESS_GROUP ""
+add_interface_port ip_clk IPCORE_CLK clk Input 1
+
+# connection point ip_rst
+add_interface ip_rst reset end
+set_interface_property ip_rst associatedClock ip_clk
+set_interface_property ip_rst synchronousEdges DEASSERT
+set_interface_property ip_rst ENABLED true
+set_interface_property ip_rst EXPORT_OF ""
+set_interface_property ip_rst PORT_NAME_MAP ""
+set_interface_property ip_rst CMSIS_SVD_VARIABLES ""
+set_interface_property ip_rst SVD_ADDRESS_GROUP ""
+add_interface_port ip_rst IPCORE_RESETN reset_n Input 1
+
+## External Ports
+# connection point avalon_sink_valid
+add_interface avalon_sink_valid conduit end
+set_interface_property avalon_sink_valid associatedClock ip_clk
+set_interface_property avalon_sink_valid associatedReset ip_rst
+set_interface_property avalon_sink_valid ENABLED true
+set_interface_property avalon_sink_valid EXPORT_OF ""
+set_interface_property avalon_sink_valid PORT_NAME_MAP ""
+set_interface_property avalon_sink_valid CMSIS_SVD_VARIABLES ""
+set_interface_property avalon_sink_valid SVD_ADDRESS_GROUP ""
+add_interface_port avalon_sink_valid avalon_sink_valid pin Input 1
+
+# connection point avalon_sink_data
+add_interface avalon_sink_data conduit end
+set_interface_property avalon_sink_data associatedClock ip_clk
+set_interface_property avalon_sink_data associatedReset ip_rst
+set_interface_property avalon_sink_data ENABLED true
+set_interface_property avalon_sink_data EXPORT_OF ""
+set_interface_property avalon_sink_data PORT_NAME_MAP ""
+set_interface_property avalon_sink_data CMSIS_SVD_VARIABLES ""
+set_interface_property avalon_sink_data SVD_ADDRESS_GROUP ""
+add_interface_port avalon_sink_data avalon_sink_data pin Input 32
+
+# connection point avalon_sink_channel
+add_interface avalon_sink_channel conduit end
+set_interface_property avalon_sink_channel associatedClock ip_clk
+set_interface_property avalon_sink_channel associatedReset ip_rst
+set_interface_property avalon_sink_channel ENABLED true
+set_interface_property avalon_sink_channel EXPORT_OF ""
+set_interface_property avalon_sink_channel PORT_NAME_MAP ""
+set_interface_property avalon_sink_channel CMSIS_SVD_VARIABLES ""
+set_interface_property avalon_sink_channel SVD_ADDRESS_GROUP ""
+add_interface_port avalon_sink_channel avalon_sink_channel pin Input 2
+
+# connection point avalon_sink_error
+add_interface avalon_sink_error conduit end
+set_interface_property avalon_sink_error associatedClock ip_clk
+set_interface_property avalon_sink_error associatedReset ip_rst
+set_interface_property avalon_sink_error ENABLED true
+set_interface_property avalon_sink_error EXPORT_OF ""
+set_interface_property avalon_sink_error PORT_NAME_MAP ""
+set_interface_property avalon_sink_error CMSIS_SVD_VARIABLES ""
+set_interface_property avalon_sink_error SVD_ADDRESS_GROUP ""
+add_interface_port avalon_sink_error avalon_sink_error pin Input 2
+
+# connection point register_control_left_gain
+add_interface register_control_left_gain conduit end
+set_interface_property register_control_left_gain associatedClock ip_clk
+set_interface_property register_control_left_gain associatedReset ip_rst
+set_interface_property register_control_left_gain ENABLED true
+set_interface_property register_control_left_gain EXPORT_OF ""
+set_interface_property register_control_left_gain PORT_NAME_MAP ""
+set_interface_property register_control_left_gain CMSIS_SVD_VARIABLES ""
+set_interface_property register_control_left_gain SVD_ADDRESS_GROUP ""
+add_interface_port register_control_left_gain register_control_left_gain pin Input 32
+
+# connection point register_control_right_gain
+add_interface register_control_right_gain conduit end
+set_interface_property register_control_right_gain associatedClock ip_clk
+set_interface_property register_control_right_gain associatedReset ip_rst
+set_interface_property register_control_right_gain ENABLED true
+set_interface_property register_control_right_gain EXPORT_OF ""
+set_interface_property register_control_right_gain PORT_NAME_MAP ""
+set_interface_property register_control_right_gain CMSIS_SVD_VARIABLES ""
+set_interface_property register_control_right_gain SVD_ADDRESS_GROUP ""
+add_interface_port register_control_right_gain register_control_right_gain pin Input 32
+
+# connection point register_control_max_reset_threshold
+add_interface register_control_max_reset_threshold conduit end
+set_interface_property register_control_max_reset_threshold associatedClock ip_clk
+set_interface_property register_control_max_reset_threshold associatedReset ip_rst
+set_interface_property register_control_max_reset_threshold ENABLED true
+set_interface_property register_control_max_reset_threshold EXPORT_OF ""
+set_interface_property register_control_max_reset_threshold PORT_NAME_MAP ""
+set_interface_property register_control_max_reset_threshold CMSIS_SVD_VARIABLES ""
+set_interface_property register_control_max_reset_threshold SVD_ADDRESS_GROUP ""
+add_interface_port register_control_max_reset_threshold register_control_max_reset_threshold pin Input 18
+
+# connection point register_control_LED_persistence
+add_interface register_control_LED_persistence conduit end
+set_interface_property register_control_LED_persistence associatedClock ip_clk
+set_interface_property register_control_LED_persistence associatedReset ip_rst
+set_interface_property register_control_LED_persistence ENABLED true
+set_interface_property register_control_LED_persistence EXPORT_OF ""
+set_interface_property register_control_LED_persistence PORT_NAME_MAP ""
+set_interface_property register_control_LED_persistence CMSIS_SVD_VARIABLES ""
+set_interface_property register_control_LED_persistence SVD_ADDRESS_GROUP ""
+add_interface_port register_control_LED_persistence register_control_LED_persistence pin Input 15
+
+# connection point avalon_source_valid
+add_interface avalon_source_valid conduit end
+set_interface_property avalon_source_valid associatedClock ip_clk
+set_interface_property avalon_source_valid associatedReset ip_rst
+set_interface_property avalon_source_valid ENABLED true
+set_interface_property avalon_source_valid EXPORT_OF ""
+set_interface_property avalon_source_valid PORT_NAME_MAP ""
+set_interface_property avalon_source_valid CMSIS_SVD_VARIABLES ""
+set_interface_property avalon_source_valid SVD_ADDRESS_GROUP ""
+add_interface_port avalon_source_valid avalon_source_valid pin Output 1
+
+# connection point avalon_source_data
+add_interface avalon_source_data conduit end
+set_interface_property avalon_source_data associatedClock ip_clk
+set_interface_property avalon_source_data associatedReset ip_rst
+set_interface_property avalon_source_data ENABLED true
+set_interface_property avalon_source_data EXPORT_OF ""
+set_interface_property avalon_source_data PORT_NAME_MAP ""
+set_interface_property avalon_source_data CMSIS_SVD_VARIABLES ""
+set_interface_property avalon_source_data SVD_ADDRESS_GROUP ""
+add_interface_port avalon_source_data avalon_source_data pin Output 32
+
+# connection point avalon_source_channel
+add_interface avalon_source_channel conduit end
+set_interface_property avalon_source_channel associatedClock ip_clk
+set_interface_property avalon_source_channel associatedReset ip_rst
+set_interface_property avalon_source_channel ENABLED true
+set_interface_property avalon_source_channel EXPORT_OF ""
+set_interface_property avalon_source_channel PORT_NAME_MAP ""
+set_interface_property avalon_source_channel CMSIS_SVD_VARIABLES ""
+set_interface_property avalon_source_channel SVD_ADDRESS_GROUP ""
+add_interface_port avalon_source_channel avalon_source_channel pin Output 2
+
+# connection point avalon_source_error
+add_interface avalon_source_error conduit end
+set_interface_property avalon_source_error associatedClock ip_clk
+set_interface_property avalon_source_error associatedReset ip_rst
+set_interface_property avalon_source_error ENABLED true
+set_interface_property avalon_source_error EXPORT_OF ""
+set_interface_property avalon_source_error PORT_NAME_MAP ""
+set_interface_property avalon_source_error CMSIS_SVD_VARIABLES ""
+set_interface_property avalon_source_error SVD_ADDRESS_GROUP ""
+add_interface_port avalon_source_error avalon_source_error pin Output 2
+
+# connection point LED
+add_interface LED conduit end
+set_interface_property LED associatedClock ip_clk
+set_interface_property LED associatedReset ip_rst
+set_interface_property LED ENABLED true
+set_interface_property LED EXPORT_OF ""
+set_interface_property LED PORT_NAME_MAP ""
+set_interface_property LED CMSIS_SVD_VARIABLES ""
+set_interface_property LED SVD_ADDRESS_GROUP ""
+add_interface_port LED LED pin Output 8
+
