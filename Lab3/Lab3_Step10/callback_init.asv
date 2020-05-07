@@ -16,6 +16,3 @@ mp.F_bits = 28; % Number of fractional bits in word
 %% Create test signals for the left and right channels
 length(input_wav_signal)
 stop_time = length(input_wav_signal) * Ts_in
-
-%% Set the echo delay
-delay = floor(3 * Fs_in);  % delay in seconds
