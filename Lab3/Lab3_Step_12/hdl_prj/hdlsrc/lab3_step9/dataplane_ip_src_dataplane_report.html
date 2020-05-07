@@ -48,15 +48,15 @@
  <div class="page_container"><div class="content_frame">
 <h1>HDL Code Generation Check Report for 'lab3_step9/dataplane'
 <a href="matlab:open_system('lab3_step9/dataplane');">open model 'lab3_step9/dataplane'</a><BR>
-Generated on 2020-04-22 15:35:31</h1>
-<H2>HDL check for 'lab3_step9' complete with 0 errors, 0 warnings, and 1 messages.</H2><BR>
+Generated on 2020-05-07 10:46:03</h1>
+<H2>HDL check for 'lab3_step9' complete with 0 errors, 1 warnings, and 0 messages.</H2><BR>
 <H3>The following table describes blocks for which errors, warnings or messages were reported.</H3><BR>
 <TABLE>
 <TR><TD> <B>Simulink Blocks and resources</B> </TD><TD> <B>Level</B> </TD><TD> <B>Description</B> </TD></TR><TR bgcolor="#F0F0F0"><TD>
-<a alt="hdlcoder:hdldisp:GeneratingFeedbackHiliteScript" href="matlab:run('hdl_prj\hdlsrc\lab3_step9\highlightFeedbackLoop')">hdl_prj\hdlsrc\lab3_step9\highlightFeedbackLoop.m</a>
+<a alt="hdlcoder:validate:DelayBalancingOff" href="matlab:hilite(get_param(char([108 97 98 51 95 115 116 101 112 57]),'object'),'none');open_system(char([108 97 98 51 95 115 116 101 112 57]))">lab3_step9</a>
 </TD>
-<TD>Message</TD>
-<TD>One or more feedback loops in the model are inhibiting optimizations. To highlight these loops in your model, click the following MATLAB script: <a href="matlab:run('hdl_prj\hdlsrc\lab3_step9\highlightFeedbackLoop')">hdl_prj\hdlsrc\lab3_step9\highlightFeedbackLoop.m</a></TD>
+<TD>Warning</TD>
+<TD><a href="matlab:configset.internal.open('lab3_step9','BalanceDelays')">'BalanceDelays'</a> is set to 'Off' for the model. This can introduce a difference in numerics between the original model and generated model when automatic pipelines are inserted and not balanced. To verify the numerics, enable <a href="matlab:configset.internal.open('lab3_step9','GenerateValidationModel')">'GenerateValidationModel'</a>, generate HDL code, and open and simulate the validation model.</TD>
 </TR>
 </TABLE>
 <BR><BR> </div></div></div></div>
