@@ -44,7 +44,7 @@ mp = sm_init_avalon_signals(mp);  % create the avalon streaming signals
 mp = sm_init_control_signals(mp);
 
 %% Set the echo delay
-delay = mp.Fs;  % delay in seconds
+delay = 1000;  % delay in seconds
 hdlsetuptoolpath('ToolName', 'Altera Quartus II', 'ToolPath','C:\intelFPGA_lite\19.1\quartus\bin64\quartus.exe');
 
 
