@@ -380,27 +380,6 @@ architecture rtl of soc_system is
 		);
 	end component soc_system_jtag_uart;
 
-	component soc_system_master_0 is
-		generic (
-			USE_PLI     : integer := 0;
-			PLI_PORT    : integer := 50000;
-			FIFO_DEPTHS : integer := 2
-		);
-		port (
-			clk_clk              : in  std_logic                     := 'X';             -- clk
-			clk_reset_reset      : in  std_logic                     := 'X';             -- reset
-			master_address       : out std_logic_vector(31 downto 0);                    -- address
-			master_readdata      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
-			master_read          : out std_logic;                                        -- read
-			master_write         : out std_logic;                                        -- write
-			master_writedata     : out std_logic_vector(31 downto 0);                    -- writedata
-			master_waitrequest   : in  std_logic                     := 'X';             -- waitrequest
-			master_readdatavalid : in  std_logic                     := 'X';             -- readdatavalid
-			master_byteenable    : out std_logic_vector(3 downto 0);                     -- byteenable
-			master_reset_reset   : out std_logic                                         -- reset
-		);
-	end component soc_system_master_0;
-
 	component soc_system_onchip_memory is
 		port (
 			clk        : in  std_logic                     := 'X';             -- clk
@@ -511,15 +490,6 @@ architecture rtl of soc_system is
 			Dataplane_0_reset_reset_bridge_in_reset_reset                     : in  std_logic                     := 'X';             -- reset
 			hps_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset : in  std_logic                     := 'X';             -- reset
 			jtag_uart_reset_reset_bridge_in_reset_reset                       : in  std_logic                     := 'X';             -- reset
-			master_0_clk_reset_reset_bridge_in_reset_reset                    : in  std_logic                     := 'X';             -- reset
-			master_0_master_address                                           : in  std_logic_vector(31 downto 0) := (others => 'X'); -- address
-			master_0_master_waitrequest                                       : out std_logic;                                        -- waitrequest
-			master_0_master_byteenable                                        : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- byteenable
-			master_0_master_read                                              : in  std_logic                     := 'X';             -- read
-			master_0_master_readdata                                          : out std_logic_vector(31 downto 0);                    -- readdata
-			master_0_master_readdatavalid                                     : out std_logic;                                        -- readdatavalid
-			master_0_master_write                                             : in  std_logic                     := 'X';             -- write
-			master_0_master_writedata                                         : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			Dataplane_0_avalon_slave_address                                  : out std_logic_vector(1 downto 0);                     -- address
 			Dataplane_0_avalon_slave_write                                    : out std_logic;                                        -- write
 			Dataplane_0_avalon_slave_read                                     : out std_logic;                                        -- read
@@ -775,14 +745,6 @@ architecture rtl of soc_system is
 	signal hps_h2f_lw_axi_master_awsize                                  : std_logic_vector(2 downto 0);  -- hps:h2f_lw_AWSIZE -> mm_interconnect_1:hps_h2f_lw_axi_master_awsize
 	signal hps_h2f_lw_axi_master_awvalid                                 : std_logic;                     -- hps:h2f_lw_AWVALID -> mm_interconnect_1:hps_h2f_lw_axi_master_awvalid
 	signal hps_h2f_lw_axi_master_rvalid                                  : std_logic;                     -- mm_interconnect_1:hps_h2f_lw_axi_master_rvalid -> hps:h2f_lw_RVALID
-	signal master_0_master_readdata                                      : std_logic_vector(31 downto 0); -- mm_interconnect_1:master_0_master_readdata -> master_0:master_readdata
-	signal master_0_master_waitrequest                                   : std_logic;                     -- mm_interconnect_1:master_0_master_waitrequest -> master_0:master_waitrequest
-	signal master_0_master_address                                       : std_logic_vector(31 downto 0); -- master_0:master_address -> mm_interconnect_1:master_0_master_address
-	signal master_0_master_read                                          : std_logic;                     -- master_0:master_read -> mm_interconnect_1:master_0_master_read
-	signal master_0_master_byteenable                                    : std_logic_vector(3 downto 0);  -- master_0:master_byteenable -> mm_interconnect_1:master_0_master_byteenable
-	signal master_0_master_readdatavalid                                 : std_logic;                     -- mm_interconnect_1:master_0_master_readdatavalid -> master_0:master_readdatavalid
-	signal master_0_master_write                                         : std_logic;                     -- master_0:master_write -> mm_interconnect_1:master_0_master_write
-	signal master_0_master_writedata                                     : std_logic_vector(31 downto 0); -- master_0:master_writedata -> mm_interconnect_1:master_0_master_writedata
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_chipselect      : std_logic;                     -- mm_interconnect_1:jtag_uart_avalon_jtag_slave_chipselect -> jtag_uart:av_chipselect
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_readdata        : std_logic_vector(31 downto 0); -- jtag_uart:av_readdata -> mm_interconnect_1:jtag_uart_avalon_jtag_slave_readdata
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_waitrequest     : std_logic;                     -- jtag_uart:av_waitrequest -> mm_interconnect_1:jtag_uart_avalon_jtag_slave_waitrequest
@@ -801,11 +763,11 @@ architecture rtl of soc_system is
 	signal hps_f2h_irq0_irq                                              : std_logic_vector(31 downto 0); -- irq_mapper:sender_irq -> hps:f2h_irq_p0
 	signal hps_f2h_irq1_irq                                              : std_logic_vector(31 downto 0); -- irq_mapper_001:sender_irq -> hps:f2h_irq_p1
 	signal rst_controller_reset_out_reset                                : std_logic;                     -- rst_controller:reset_out -> [Dataplane_0:reset, FE_Qsys_AD1939_Audio_Mini_v1_0:sys_reset, mm_interconnect_1:Dataplane_0_reset_reset_bridge_in_reset_reset]
-	signal rst_controller_001_reset_out_reset                            : std_logic;                     -- rst_controller_001:reset_out -> [mm_interconnect_0:onchip_memory_reset1_reset_bridge_in_reset_reset, mm_interconnect_1:jtag_uart_reset_reset_bridge_in_reset_reset, mm_interconnect_1:master_0_clk_reset_reset_bridge_in_reset_reset, onchip_memory:reset, rst_controller_001_reset_out_reset:in, rst_translator:in_reset]
+	signal rst_controller_001_reset_out_reset                            : std_logic;                     -- rst_controller_001:reset_out -> [mm_interconnect_0:onchip_memory_reset1_reset_bridge_in_reset_reset, mm_interconnect_1:jtag_uart_reset_reset_bridge_in_reset_reset, onchip_memory:reset, rst_controller_001_reset_out_reset:in, rst_translator:in_reset]
 	signal rst_controller_001_reset_out_reset_req                        : std_logic;                     -- rst_controller_001:reset_req -> [onchip_memory:reset_req, rst_translator:reset_req_in]
 	signal rst_controller_002_reset_out_reset                            : std_logic;                     -- rst_controller_002:reset_out -> [mm_interconnect_0:hps_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_1:hps_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset]
 	signal hps_h2f_reset_reset_n_ports_inv                               : std_logic;                     -- hps_h2f_reset_reset_n:inv -> rst_controller_002:reset_in0
-	signal reset_reset_n_ports_inv                                       : std_logic;                     -- reset_reset_n:inv -> [PLL_using_AD1939_MCLK:rst, master_0:clk_reset_reset, rst_controller:reset_in0, rst_controller_001:reset_in0]
+	signal reset_reset_n_ports_inv                                       : std_logic;                     -- reset_reset_n:inv -> [PLL_using_AD1939_MCLK:rst, rst_controller:reset_in0, rst_controller_001:reset_in0]
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_read_ports_inv  : std_logic;                     -- mm_interconnect_1_jtag_uart_avalon_jtag_slave_read:inv -> jtag_uart:av_read_n
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_write_ports_inv : std_logic;                     -- mm_interconnect_1_jtag_uart_avalon_jtag_slave_write:inv -> jtag_uart:av_write_n
 	signal rst_controller_001_reset_out_reset_ports_inv                  : std_logic;                     -- rst_controller_001_reset_out_reset:inv -> [SystemID:reset_n, jtag_uart:rst_n]
@@ -1085,26 +1047,6 @@ begin
 			av_irq         => irq_mapper_receiver0_irq                                       --               irq.irq
 		);
 
-	master_0 : component soc_system_master_0
-		generic map (
-			USE_PLI     => 0,
-			PLI_PORT    => 50000,
-			FIFO_DEPTHS => 2
-		)
-		port map (
-			clk_clk              => clk_clk,                       --          clk.clk
-			clk_reset_reset      => reset_reset_n_ports_inv,       --    clk_reset.reset
-			master_address       => master_0_master_address,       --       master.address
-			master_readdata      => master_0_master_readdata,      --             .readdata
-			master_read          => master_0_master_read,          --             .read
-			master_write         => master_0_master_write,         --             .write
-			master_writedata     => master_0_master_writedata,     --             .writedata
-			master_waitrequest   => master_0_master_waitrequest,   --             .waitrequest
-			master_readdatavalid => master_0_master_readdatavalid, --             .readdatavalid
-			master_byteenable    => master_0_master_byteenable,    --             .byteenable
-			master_reset_reset   => open                           -- master_reset.reset
-		);
-
 	onchip_memory : component soc_system_onchip_memory
 		port map (
 			clk        => clk_clk,                                       --   clk1.clk
@@ -1213,15 +1155,6 @@ begin
 			Dataplane_0_reset_reset_bridge_in_reset_reset                     => rst_controller_reset_out_reset,                            --                     Dataplane_0_reset_reset_bridge_in_reset.reset
 			hps_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset => rst_controller_002_reset_out_reset,                        -- hps_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
 			jtag_uart_reset_reset_bridge_in_reset_reset                       => rst_controller_001_reset_out_reset,                        --                       jtag_uart_reset_reset_bridge_in_reset.reset
-			master_0_clk_reset_reset_bridge_in_reset_reset                    => rst_controller_001_reset_out_reset,                        --                    master_0_clk_reset_reset_bridge_in_reset.reset
-			master_0_master_address                                           => master_0_master_address,                                   --                                             master_0_master.address
-			master_0_master_waitrequest                                       => master_0_master_waitrequest,                               --                                                            .waitrequest
-			master_0_master_byteenable                                        => master_0_master_byteenable,                                --                                                            .byteenable
-			master_0_master_read                                              => master_0_master_read,                                      --                                                            .read
-			master_0_master_readdata                                          => master_0_master_readdata,                                  --                                                            .readdata
-			master_0_master_readdatavalid                                     => master_0_master_readdatavalid,                             --                                                            .readdatavalid
-			master_0_master_write                                             => master_0_master_write,                                     --                                                            .write
-			master_0_master_writedata                                         => master_0_master_writedata,                                 --                                                            .writedata
 			Dataplane_0_avalon_slave_address                                  => mm_interconnect_1_dataplane_0_avalon_slave_address,        --                                    Dataplane_0_avalon_slave.address
 			Dataplane_0_avalon_slave_write                                    => mm_interconnect_1_dataplane_0_avalon_slave_write,          --                                                            .write
 			Dataplane_0_avalon_slave_read                                     => mm_interconnect_1_dataplane_0_avalon_slave_read,           --                                                            .read
