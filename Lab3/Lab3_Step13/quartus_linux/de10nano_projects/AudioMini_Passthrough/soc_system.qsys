@@ -129,6 +129,14 @@
          type = "boolean";
       }
    }
+   element jtag_mm1
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
    element jtag_uart
    {
       datum _sortIndex
@@ -1286,6 +1294,20 @@
   <parameter name="use_default_mpu_clk" value="true" />
  </module>
  <module
+   name="jtag_mm1"
+   kind="altera_jtag_avalon_master"
+   version="18.0"
+   enabled="1">
+  <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
+  <parameter name="COMPONENT_CLOCK" value="0" />
+  <parameter name="FAST_VER" value="0" />
+  <parameter name="FIFO_DEPTHS" value="2" />
+  <parameter name="PLI_PORT" value="50000" />
+  <parameter name="USE_PLI" value="0" />
+ </module>
+ <module
    name="jtag_uart"
    kind="altera_avalon_jtag_uart"
    version="18.0"
@@ -1373,6 +1395,15 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
+   kind="avalon"
+   version="18.0"
+   start="jtag_mm1.master"
+   end="Dataplane_0.avalon_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
    kind="avalon_streaming"
    version="18.0"
    start="FE_Qsys_AD1939_Audio_Mini_v1_0.Line_In"
@@ -1384,6 +1415,7 @@
    end="FE_Qsys_AD1939_Audio_Mini_v1_0.Headphone_Out" />
  <connection kind="clock" version="18.0" start="clk_hps.clk" end="SystemID.clk" />
  <connection kind="clock" version="18.0" start="clk_hps.clk" end="jtag_uart.clk" />
+ <connection kind="clock" version="18.0" start="clk_hps.clk" end="jtag_mm1.clk" />
  <connection
    kind="clock"
    version="18.0"
@@ -1441,6 +1473,11 @@
    version="18.0"
    start="clk_hps.clk_reset"
    end="clk_AD1939_ALRCLK.clk_in_reset" />
+ <connection
+   kind="reset"
+   version="18.0"
+   start="clk_hps.clk_reset"
+   end="jtag_mm1.clk_reset" />
  <connection
    kind="reset"
    version="18.0"
