@@ -1,4 +1,4 @@
-[input_wav_signal,Fs_in] = audioread('acoustic.wav');
+[input_wav_signal,Fs_in] = audioread('my_voice2.wav');
 Ts_in = 1/Fs_in;
 
 %% Set Aduio Data Sample Rate
@@ -18,4 +18,4 @@ length(input_wav_signal)
 stop_time = length(input_wav_signal) * Ts_in
 
 %% Set the echo delay
-delay = floor(3 * Fs_in);  % delay in seconds
+delay = floor(1 * mp.Fs);  % delay in seconds
