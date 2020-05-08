@@ -169,7 +169,7 @@ GND                          : AD8       : gnd    :                   :         
 VCCPD3B4A                    : AD9       : power  :                   : 3.3V    : 3B, 4A    :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD10      :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD11      :        :                   :         : 3B        :                
-HPS_I2C0_SCLK                : AD12      : bidir  : 3.3-V LVTTL       :         : 3B        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AD12      :        :                   :         : 3B        :                
 VCCPD3B4A                    : AD13      : power  :                   : 3.3V    : 3B, 4A    :                
 GND                          : AD14      : gnd    :                   :         :           :                
 VCC_AUX                      : AD15      : power  :                   : 2.5V    :           :                
@@ -223,7 +223,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AF6       :        :                   :      
 Audio_Mini_GPIO_0[6]         : AF7       : bidir  : 3.3-V LVTTL       :         : 3B        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF8       :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF9       :        :                   :         : 3B        :                
-HPS_I2C0_SDAT                : AF10      : bidir  : 3.3-V LVTTL       :         : 3B        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AF10      :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF11      :        :                   :         : 3B        :                
 VREFB3BN0                    : AF12      : power  :                   :         : 3B        :                
 ARDUINO_IO[1]                : AF13      : bidir  : 3.3-V LVTTL       :         : 4A        : Y              
@@ -274,7 +274,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AH2       :        :                   :      
 Audio_Mini_GPIO_0[9]         : AH3       : bidir  : 3.3-V LVTTL       :         : 3B        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH4       :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH5       :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH6       :        :                   :         : 3B        :                
+HPS_I2C0_SDAT                : AH6       : bidir  : 3.3-V LVTTL       :         : 3B        : N              
 ARDUINO_RESET_N              : AH7       : bidir  : 3.3-V LVTTL       :         : 4A        : Y              
 ARDUINO_IO[7]                : AH8       : bidir  : 3.3-V LVTTL       :         : 4A        : Y              
 ARDUINO_IO[14]               : AH9       : bidir  : 3.3-V LVTTL       :         : 4A        : Y              
@@ -729,7 +729,7 @@ HPS_DDR3_DM[2]               : W28       : output : SSTL-15 Class I   :         
 DNU                          : Y1        :        :                   :         :           :                
 DNU                          : Y2        :        :                   :         :           :                
 GND                          : Y3        : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y4        :        :                   :         : 3A        :                
+HPS_I2C0_SCLK                : Y4        : bidir  : 3.3-V LVTTL       :         : 3A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y5        :        :                   :         : 3A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y8        :        :                   :         : 3A        :                
 altera_reserved_tdo          : Y9        : output : 3.3-V LVTTL       :         : 3A        : N              
